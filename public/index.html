@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+  <style type="text/css">
+    body {
+      font-size: 120%;
+      font-family: Verdana, Arial, Helvetica, sans-serif; 
+      color: #336;
+    }
+    #affiliates {
+      border: #f00 solid 4px;
+      width: 350px;
+      position: fixed;
+      top: 20%;
+      left: 46%;
+      margin-top: -90px;
+      margin-left: -150px;
+    }
+    #affiliates_title {
+      background: #f00;
+      text-align: center;
+      color: #fff;
+    }
+    #profit {
+      border: #f00 solid 4px;
+      width: 350px;
+      position: fixed;
+      top: 20%;
+      left: 46%;
+      margin-top: 100px;
+      margin-left: -400px; 
+   }
+    #profit_title {
+      background: #f00;
+      text-align: center;
+      color: #fff;
+    }
+    #searches {
+      border: #f00 solid 4px;
+      width: 350px;
+      position: fixed;
+      top: 20%;
+      left: 46%;
+      margin-top: 100px;
+      margin-left: 100px; 
+   }
+    #searches_title {
+      background: #f00;
+      text-align: center;
+      color: #fff;
+    }
+    #bookings {
+      border: #f00 solid 4px;
+      width: 350px;
+      position: fixed;
+      top: 20%;
+      left: 46%;
+      margin-top: 300px;
+      margin-left: 100px; 
+   }
+    #bookings_title {
+      background: #f00;
+      text-align: center;
+      color: #fff;
+    }
+    #clicks {
+      border: #f00 solid 4px;
+      width: 350px;
+      position: fixed;
+      top: 20%;
+      left: 46%;
+      margin-top: 300px;
+      margin-left: -400px; 
+   }
+    #clicks_title {
+      background: #f00;
+      text-align: center;
+      color: #fff;
+    }
+  </style>
+</head>
+<style>
+</style>
+<body>
+  <div id='last_update'></div>
+  <div id="affiliates">
+    <div id="affiliates_title">Affiliates</div>
+    <ul>
+      <li>Today: <span id="affiliates_today_count"></span></li>
+      <li>Yesterday: <span id="affiliates_yesterday_count"></span></li>
+      <li>TOTAL: <span id="affiliates_total_count"></span></li>
+      <li>Сhart: <a href="//dashboard.beta.travelpayouts.com/affiliates.html" target="_blank"> Draw graph of register affiliates 60 days</a></li>
+    </ul>
+  </div>
+  <div id="profit">
+    <div id="profit_title">Affiliates Profit </div>
+    <ul>
+      <li>Today: <span id="profit_today_count"></span></li>
+      <li>Yesterday: <span id="profit_yesterday_count"></span></li>
+      <li>Сhart: <a href="http://dashboard.beta.travelpayouts.com/profit.html" target="_blank"> Draw affiliates profit 60 days</a></li>
+    </ul>
+  </div>
+  <div id="searches">
+    <div id="searches_title">ALL Searches Travelpayouts</div>
+    <ul>
+      <li>Today: <span id="searches_today_count"></span></li>
+      <li>Yesterday: <span id="searches_yesterday_count"></span></li>
+      <li>Сhart: <a href="http://dashboard.beta.travelpayouts.com/profit.html" target="_blank"> Draw all affiliates searches 60 days</a></li>
+    </ul>
+  </div>
+  <div id="bookings">
+    <div id="bookings_title">ALL Bookings Travelpayouts</div>
+    <ul>
+      <li>Today: <span id="bookings_today_count"></span></li>
+      <li>Yesterday: <span id="bookings_yesterday_count"></span></li>
+      <li>Сhart: <a href="http://dashboard.beta.travelpayouts.com/bookings_and_clicks.html" target="_blank"> Draw all affiliates bookings 60 days</a></li>
+    </ul>
+  </div>
+    <div id="clicks">
+    <div id="clicks_title">ALL Clicks Travelpayouts</div>
+    <ul>
+      <li>Today: <span id="clicks_today_count"></span></li>
+      <li>Yesterday: <span id="clicks_yesterday_count"></span></li>
+      <li>Сhart: <a href="http://dashboard.beta.travelpayouts.com/bookings_and_clicks.html" target="_blank"> Draw all affiliates clicks 60 days</a></li>
+    </ul>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script>
+    function update_data(){
+      $.getJSON( "/data.json", function( data ) {
+        $('#affiliates_today_count').html(data.affiliates.today);
+        $('#affiliates_yesterday_count').html(data.affiliates.yesterday);
+        $('#affiliates_total_count').html(data.affiliates.total);
+        $('#profit_today_count').html(data.profit.today);
+        $('#profit_yesterday_count').html(data.profit.yesterday);
+        $('#searches_today_count').html(data.searches.today);
+        $('#searches_yesterday_count').html(data.searches.yesterday);
+        $('#bookings_today_count').html(data.bookings.today);
+        $('#bookings_yesterday_count').html(data.bookings.yesterday);
+        $('#clicks_today_count').html(data.clicks.today);
+        $('#clicks_yesterday_count').html(data.clicks.yesterday);
+        $('#last_update').html(new Date());
+        setTimeout(update_data, 10000);
+      });
+    }
+
+    $().ready(function(){
+      update_data();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="nl">
+    <head>
+        <meta charset="utf-8">
+        <title>Counts of affiliates per DAY</title>
+        <script type="text/javascript" src="Chart.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+
+            $().ready(function(){
+      update_data();
+    });
+                function wholeNumberAxisFix(data) {
+                   var maxValue = false;
+                   for (datasetIndex = 0; datasetIndex < data.datasets.length; ++datasetIndex) {
+                       var setMax = Math.max.apply(null, data.datasets[datasetIndex].data);
+                       if (maxValue === false || setMax > maxValue) maxValue = setMax;
+                   }
+
+                   var steps = new Number(maxValue);
+                   var stepWidth = new Number(1);
+                   if (maxValue > 10) {
+                       stepWidth = Math.floor(maxValue / 20);
+                       steps = Math.ceil(maxValue / stepWidth);
+                   }
+                   return { scaleOverride: true, scaleSteps: steps, scaleStepWidth: stepWidth, scaleStartValue: 0};
+                }
+                function update_data(){
+                  $.getJSON( "/plot_affiliates_data.json", function( data ) {
+                   
+                    var ctx = $("#myChart").get(0).getContext("2d");
+                    var data2 = {
+                        labels: data.dates,
+                        datasets: [
+                            {
+                                fillColor: "rgba(220,220,220,0.5)",
+                                strokeColor: "rgba(220,220,220,1)",
+                                pointColor: "rgba(220,220,220,1)",
+                                pointStrokeColor: "#fff",
+                                data: data.values
+                            }
+                        ]
+                    }
+                     
+                    var myNewChart = new Chart(ctx).Line(data2,wholeNumberAxisFix(data2));
+                  });
+                }
+        </script>
+        <div>
+            <section>
+                <article>
+                    <canvas id="myChart" width="1300" height="600">
+                    </canvas>
+                </article>
+            </section>
+        </div>
+    </body>
+</html>
