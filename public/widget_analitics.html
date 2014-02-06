@@ -13,6 +13,7 @@
             $().ready(function(){
       update_data();
     });
+/*
                 function wholeNumberAxisFix(data) {
                    var maxValue = false;
                    for (datasetIndex = 0; datasetIndex < data.datasets.length; ++datasetIndex) {
@@ -28,6 +29,7 @@
                    }
                    return { scaleOverride: true, scaleSteps: steps, scaleStepWidth: stepWidth, scaleStartValue: 0};
                 }
+*/
 
 
 
@@ -39,45 +41,44 @@
                         labels: data.inits.dates,
                         datasets: [
                               /*{
-                                fillColor: "rgba(220,220,220,0.5)",
-                                strokeColor: "rgba(220,220,220,1)",
-                                pointColor: "rgba(220,220,220,1)",
-                                pointStrokeColor: "#fff",
+                                fillColor : "rgba(36,214,150,0.1)",
+                                strokeColor : "#24d696",
+                                pointColor : "#24d696",
+                                pointStrokeColor : "#fff",
                                 data: data.inits.values
                               },
                               {
-                                fillColor : "rgba(151,187,205,0.5)",
-                                strokeColor : "rgba(151,187,205,1)",
-                                pointColor : "rgba(151,187,205,1)",
+                                fillColor : "rgba(229,148,0,0.1)",
+                                strokeColor : "#e59400",
+                                pointColor : "#e59400",
                                 pointStrokeColor : "#fff",
                                 data : data.shows.values
-                              },
-                              */
-                              //{
-                              //  fillColor : "rgba(151,187,100,1)",
-                              //  strokeColor : "rgba(151,187,100,1)",
-                              //  pointColor : "rgba(151,187,100,1)",
-                              //  pointStrokeColor : "#red",
-                              //  data : data.leads.values
-                              //},
+                              },*/
                               {
-                                fillColor : "rgba(100,187,205,0.5)",
-                                strokeColor : "rgba(100,187,205,0.5)",
-                                pointColor : "rgba(100,187,205,0.5)",
+                                fillColor : "rgba(229,0,5,0.1)",
+                                strokeColor : "#e50005",
+                                pointColor : "#e50005",
+                                pointStrokeColor : "#fff",
+                                data : data.leads.values
+                              },
+                              {
+                                fillColor : "rgba(64,64,64,0.1)",
+                                strokeColor : "#404040",
+                                pointColor : "#404040",
                                 pointStrokeColor : "#fff",
                                 data : data.searches.values
                               }
                         ]
                     }
                     var myNewChart = new Chart(ctx);
-                    myNewChart.Line(data2,wholeNumberAxisFix(data2));
+                    myNewChart.Line(data2);
                   });
                 }
         </script>
         <div>
             <section>
                 <article>
-                    <canvas id="myChart" width="1300" height="600">
+                    <canvas id="myChart" width="600" height="600">
                     </canvas>
                 </article>
             </section>

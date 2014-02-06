@@ -1,7 +1,4 @@
-require 'sinatra'
-require 'rest-client'
-require 'oj'
-require 'pry'
+
 
 
 get '/data.json' do
@@ -79,28 +76,30 @@ get '/plot_clicks_and_bookings_data.json' do
   }
   Oj.dump(result)
 end
-
+$GLOBAL = symbolize_recursively! YAML.load_file(Rails.root.join('config', 'config.global.yml'))
 get '/fetch_widget_analitics.json' do
   content_type :json
   url = 'http://tp.aviasales.ru/report.php?r=71&u1=12&m=1&h=bf7cddbb19843b15b06138169de0b06a15b28f85&export=json'
-
-  values_widget_events_and_searches = Oj.load(RestClient.get(url))
+  if @values_widget_events_and_searches.nil?
+    binding.pry
+    @values_widget_events_and_searches = Oj.load(RestClient.get(url))
+  end
   result = {
     'inits' => {
-      'dates' => values_widget_events_and_searches.map{|values|values[0]},
-      'values' => values_widget_events_and_searches.map{|values|values[1]}
+      'dates' => @values_widget_events_and_searches.map{|values|values[0]},
+      'values' => @values_widget_events_and_searches.map{|values|values[1]}
     },
     'shows' => {
-      'dates' => values_widget_events_and_searches.map{|values|values[0]},
-      'values' => values_widget_events_and_searches.map{|values|values[2]}
+      'dates' => @values_widget_events_and_searches.map{|values|values[0]},
+      'values' => @values_widget_events_and_searches.map{|values|values[2]}
     },
     'leads' => {
-      'dates' => values_widget_events_and_searches.map{|values|values[0]},
-      'values' => values_widget_events_and_searches.map{|values|values[3]}
+      'dates' => @values_widget_events_and_searches.map{|values|values[0]},
+      'values' => @values_widget_events_and_searches.map{|values|values[3]}
     },
     'searches' => {
-      'dates' => values_widget_events_and_searches.map{|values|values[0]},
-      'values' => values_widget_events_and_searches.map{|values|values[4]}
+      'dates' => @values_widget_events_and_searches.map{|values|values[0]},
+      'values' => @values_widget_events_and_searches.map{|values|values[4]}
     }
   }
   Oj.dump(result)

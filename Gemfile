@@ -5,3 +5,4 @@ gem "pry"
 gem 'sinatra'
 gem 'rest-client'
 gem 'oj'
+gem 'shotgun'
