@@ -80,4 +80,11 @@ class Dashboard < Sinatra::Base
     WidgetReport.instance.fetch_data
   end
 
+  get '/widget_analitics_v' do
+    @data_widget_analitics = WidgetReport.instance.fetch_data
+    @data_profit = AffprofitReport.instance.fetch_data
+    @data_statistics = AffstatisticReport.instance.fetch_data
+    erb :index#, :layout => :post
+  end
+
 end

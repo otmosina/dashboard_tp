@@ -1,0 +1,56 @@
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <title>Travelpayouts Dashboard</title>
+  </head>
+  <body>
+    <div align=center>
+      <p align=center><h2>Profit</h2></p>
+      <canvas id="Bar_Profit" width="500" height="200"></canvas>
+    </div>
+
+    <div align=center>
+      <p align=center><h2>Statistics</h2></p>
+      <h4>Searches | Clicks | Paid booking</h4>
+      <canvas id="Bar_Searches" width="500" height="200"></canvas>
+      <canvas id="Bar_Clicks" width="500" height="200"></canvas>
+      <canvas id="Bar_Paidbooking" width="500" height="200"></canvas>
+    </div>
+
+    <div align=center>
+      <p align=center><h2>Pulse events</h2></p>
+      <canvas id="Bar_InitsAndShows" width="500" height="200"></canvas>
+      <canvas id="Bar_LeadsAndSearches" width="500" height="200"></canvas>
+    </div>
+
+
+    <script type="text/javascript" src="Chart.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
+    <script type="text/javascript" src="http://cdn3.devexpress.com/jslib/13.2.6/js/dx.chartjs.js"></script>
+    <script src="javascripts/application.js"></script>
+      <script type="text/javascript">
+        refreshInreval = 1000*60*5
+        setInterval(refreshPage, refreshInreval);
+        $().ready(function(){
+          drawGraphs();
+        });
+        function refreshPage(){
+          location.reload();
+        }
+        function drawGraphs(){
+          DrawBar_InitsAndShows(<%= @data_widget_analitics %>, $("#Bar_InitsAndShows"))
+          DrawBar_LeadsAndSearches(<%= @data_widget_analitics %>, $("#Bar_LeadsAndSearches"))
+
+          DrawBar_Profit(<%= @data_profit %>, $("#Bar_Profit"))
+
+          DrawBar_Searches(<%= @data_statistics %>, $("#Bar_Searches"))
+          DrawBar_Clicks(<%= @data_statistics %>, $("#Bar_Clicks"))
+          DrawBar_Paidbooking(<%= @data_statistics %>, $("#Bar_Paidbooking"))
+
+        };
+      </script>
+  </body>
+</html>

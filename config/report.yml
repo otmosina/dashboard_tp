@@ -1,2 +1,6 @@
 widget_analitics:
-  url: 'http://tp.aviasales.ru/report.php?r=71&u1=12&m=1&h=bf7cddbb19843b15b06138169de0b06a15b28f85&export=json'
+  url: 'http://tp.aviasales.ru/report.php?r=73&u1=24&m=1&h=8cd6b09cb12eb6ce7e29859c9b13efe1cf8d81bf&export=json'
+aff_statistics:
+  url: 'http://tp.aviasales.ru/report.php?r=76&u1=24&m=1&h=3a49b458f329c117f90583fcb11d2c19c27caf18&export=json'
+aff_profit:
+  url: 'http://tp.aviasales.ru/report.php?r=77&u1=24&m=1&h=bd669cd8be327219113e893213e8588cf5bd8a96&export=json'

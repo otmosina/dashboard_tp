@@ -5,10 +5,12 @@
         <title>Clicks and Bookings Affiliates</title>
         <script type="text/javascript" src="Chart.js"></script>
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
+<script type="text/javascript" src="http://cdn3.devexpress.com/jslib/13.2.6/js/dx.chartjs.js"></script>
     </head>
     <body>
         <script type="text/javascript">
-      setInterval(refresh_page, 1000*60*5);
+      setInterval(refresh_page, 1000*60*10);
       $().ready(function(){
         graphs();
       });
@@ -18,7 +20,7 @@
       function graphs(){
         update_data();
         update_data2();
-       //update_data3();
+        update_data3();
       };
 
                 function update_data(){
@@ -41,16 +43,12 @@
 
                     }
                     options = {
-                      title: "Породы кошек DevExpress",
                         scaleOverride : true,
                         scaleFontSize: 12,
                         scaleSteps : 10,
                         scaleStepWidth : 10000,
                         scaleStartValue : 1000,
-                        scaleShowLabels : true,
-                        legend: {
-                            visible: true
-                        }
+                        scaleShowLabels : true
                     }
                     var myNewChart = new Chart(ctx);
                     myNewChart.Bar(data2, options);
@@ -80,11 +78,7 @@
                         scaleFontSize: 12,
                         scaleSteps : 10,
                         scaleStepWidth : 150,
-                        scaleStartValue : 100,
-                        scaleShowLabels : true,
-                        legend: {
-                            visible: true
-                        }
+                        scaleStartValue : 100
                     }
                     var myNewChart = new Chart(ctx);
                     myNewChart.Bar(data2, options);
@@ -112,9 +106,16 @@
                 }
         </script>
         <div>
-          <canvas id="myChart" width="500" height="300"></canvas>
-          <canvas id="myChart2" width="500" height="300"></canvas>
-          <canvas id="myChart3" width="1000" height="300"></canvas>
+          <p align=center>Pulse events</p>
+          <canvas id="myChart" width="500" height="200">
+          </canvas>
+          <canvas id="myChart2" width="500" height="200"></canvas>
         </div>
+        <div>
+          <p align=center>Affiliate</p>
+          <canvas id="myChart3" width="500" height="200">
+          </canvas>
+        </div>
+
     </body>
 </html>
