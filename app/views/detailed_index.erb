@@ -1,0 +1,38 @@
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <title>Travelpayouts Detailed Dashboard</title>
+  </head>
+  <body>
+
+    <div align=center>
+      <p align=center><h2>Profit</h2></p>
+      <canvas id="Bar_Profit" width="500" height="200"></canvas>
+    </div>
+
+    <script type="text/javascript" src="Chart.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
+    <script type="text/javascript" src="http://cdn3.devexpress.com/jslib/13.2.6/js/dx.chartjs.js"></script>
+    <script src="javascripts/application.js"></script>
+      <script type="text/javascript">
+        refreshInreval = 1000*60*10
+        setInterval(refreshPage, refreshInreval);
+        $().ready(function(){
+          drawGraphs();
+        });
+        function refreshPage(){
+          location.reload();
+        }
+        function drawGraphs(){
+          <% if @data_widget_events %>
+          DrawBar_InitsAndShows(<%= @data_widget_events %>, $("#Bar_InitsAndShows"))
+          DrawBar_LeadsAndSearches(<%= @data_widget_events %>, $("#Bar_LeadsAndSearches"))
+          <% end %>
+
+        };
+      </script>
+  </body>
+</html>

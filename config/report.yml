@@ -1,6 +1,15 @@
-widget_analitics:
+widget_events:
   url: 'http://tp.aviasales.ru/report.php?r=73&u1=24&m=1&h=8cd6b09cb12eb6ce7e29859c9b13efe1cf8d81bf&export=json'
+  detailed_url: 'http://tp.aviasales.ru/report.php?r=73&u1=1&m=1&h=8cd6b09cb12eb6ce7e29859c9b13efe1cf8d81bf&export=json'
+widget_statistics:
+  url: 'http://tp.aviasales.ru/report.php?r=74&u1=24&m=1&h=661221091ae4f65a425e47e75d7895beeefe66b5&export=json'
+  detailed_url: 'http://tp.aviasales.ru/report.php?r=74&u1=1&m=1&h=661221091ae4f65a425e47e75d7895beeefe66b5&export=json'
 aff_statistics:
   url: 'http://tp.aviasales.ru/report.php?r=76&u1=24&m=1&h=3a49b458f329c117f90583fcb11d2c19c27caf18&export=json'
+  detailed_url: ''
 aff_profit:
   url: 'http://tp.aviasales.ru/report.php?r=77&u1=24&m=1&h=bd669cd8be327219113e893213e8588cf5bd8a96&export=json'
+  detailed_url: ''
+aff_amount:
+  url: 'http://tp.aviasales.ru/report.php?r=81&u1=24&m=1&h=f3ef363e036bfacc33f7ac3a7ce698061811d2ac&export=json'
+  detailed_url: ''
