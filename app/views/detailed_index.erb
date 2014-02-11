@@ -19,7 +19,7 @@
 
     <div align=center>
       <p align=center><h2>3</h2></p>
-      <canvas id="Bar_NewAffiliate" width="1300" height="600"></canvas>
+      <canvas id="Line_Affiliates" width="1300" height="600"></canvas>
     </div>
 
 
@@ -41,7 +41,7 @@
         function drawGraphs(){
           DrawBar_StatisticsSearchesAndProfit(<%= @data_detailed_statistics %>, <%= @data_detailed_profit %>, $("#Bar_SearchesAndProfit"))
           DrawBar_StatisticsClicksAndPaidbooking(<%= @data_detailed_statistics %>, $("#Bar_ClicksAndPaidbooking"));
-          DrawBar_NewAffiliateDay(<%= @data_affamount %>, $("#Bar_NewAffiliate"))
+          DrawLine_NewAffiliateDay(<%= @data_affamount %>, $("#Line_Affiliates"))
         };
       </script>
   </body>

@@ -169,17 +169,42 @@ function DrawBar_NewAffiliate(data, dom_output){
         //pointStrokeColor: "#fff",
         data : data.amount.values
       }
+      ]
+      }
+      options = {
+        scaleOverride : true,
+        scaleFontSize: 12,
+        scaleSteps : 10,
+        scaleStepWidth : 1,
+        scaleStartValue : 0
+      }
+      var ChartInstance = new Chart(ctx);
+      ChartInstance.Bar(dataSource, options);
+    }
+
+function DrawLine_NewAffiliateDay(data, dom_output){
+  var ctx = dom_output.get(0).getContext("2d");
+  var dataSource = {
+    labels: data.amount.dates,
+    datasets: [
+    {
+        fillColor: "rgba(4,90,59,0.1)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(249,0,5,1)",
+        pointStrokeColor: "#fff",
+        data: data.amount.values
+    }
     ]
     }
     options = {
       scaleOverride : true,
       scaleFontSize: 12,
-      scaleSteps : 10,
-      scaleStepWidth : 1,
+      scaleSteps : 5,
+      scaleStepWidth : 10,
       scaleStartValue : 0
     }
     var ChartInstance = new Chart(ctx);
-    ChartInstance.Bar(dataSource, options);
+    ChartInstance.Line(dataSource, options);
 }
 
 function DrawBar_EventsWithStatisticsInitAndShow(data_events, data_statistics, dom_output){
