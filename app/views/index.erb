@@ -7,7 +7,7 @@
   </head>
   <body>
     <div align=center>
-    <p align=center><h2>Affiliate registration | Profit</h2></p>
+    <p align=center><h2>Affiliate registration | Profit | Affiliate registration per day</h2></p>
     <span align=center>
       <canvas id="Bar_NewAffiliate" width="600" height="200"></canvas>
     </span>
@@ -16,7 +16,6 @@
     <span align=center>
       <canvas id="Bar_Profit" width="600" height="200"></canvas>
     </span>
-    </div>
 
     <div align=center>
       <p align=center><h2>Statistics</h2></p>
@@ -67,9 +66,6 @@
           <% if @data_affamount %>
           DrawBar_NewAffiliate(<%= @data_affamount %>, $("#Bar_NewAffiliate"))
           <% end %>
-
-
-
         };
       </script>
   </body>
