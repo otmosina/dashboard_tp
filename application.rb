@@ -16,7 +16,7 @@ require 'app/dashboard'
 require 'app/detailed_dashboard'
 
 class DashboardEndpoint < Sinatra::Base
-  set :port, 8080
+  set :port, 9292
   set :logging, true
   set :static, true
   set :public_folder, File.dirname(__FILE__) + '/public'
