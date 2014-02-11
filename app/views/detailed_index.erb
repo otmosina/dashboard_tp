@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="nl">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Travelpayouts Detailed Dashboard</title>
@@ -8,9 +8,21 @@
   <body>
 
     <div align=center>
-      <p align=center><h2>Profit</h2></p>
-      <canvas id="Bar_Profit" width="500" height="200"></canvas>
+      <p align=center><h2>1</h2></p>
+      <canvas id="Bar_SearchesAndProfit" width="1300" height="600"></canvas>
     </div>
+
+    <div align=center>
+      <p align=center><h2>2</h2></p>
+      <canvas id="Bar_ClicksAndPaidbooking" width="1300" height="600"></canvas>
+    </div>
+
+    <div align=center>
+      <p align=center><h2>3</h2></p>
+      <canvas id="Bar_NewAffiliate" width="1300" height="600"></canvas>
+    </div>
+
+
 
     <script type="text/javascript" src="Chart.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -19,7 +31,7 @@
     <script src="javascripts/application.js"></script>
       <script type="text/javascript">
         refreshInreval = 1000*60*10
-        setInterval(refreshPage, refreshInreval);
+        //setInterval(refreshPage, refreshInreval);
         $().ready(function(){
           drawGraphs();
         });
@@ -27,11 +39,9 @@
           location.reload();
         }
         function drawGraphs(){
-          <% if @data_widget_events %>
-          DrawBar_InitsAndShows(<%= @data_widget_events %>, $("#Bar_InitsAndShows"))
-          DrawBar_LeadsAndSearches(<%= @data_widget_events %>, $("#Bar_LeadsAndSearches"))
-          <% end %>
-
+          DrawBar_StatisticsSearchesAndProfit(<%= @data_detailed_statistics %>, <%= @data_detailed_profit %>, $("#Bar_SearchesAndProfit"))
+          DrawBar_StatisticsClicksAndPaidbooking(<%= @data_detailed_statistics %>, $("#Bar_ClicksAndPaidbooking"));
+          DrawBar_NewAffiliateDay(<%= @data_affamount %>, $("#Bar_NewAffiliate"))
         };
       </script>
   </body>

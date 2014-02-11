@@ -270,6 +270,96 @@ function DrawBar_EventsWithStatisticsLeadAndSearch(data_events, data_statistics,
     ChartInstance.Line(dataSource, options);
 }
 
+//For detailed page
+
+function DrawBar_StatisticsSearchesAndProfit(data_statistics, data_profit, dom_output){
+  var ctx = dom_output.get(0).getContext("2d");
+  var dataSource = {
+    labels: data_statistics.clicks.dates,
+    datasets: [
+      {
+        fillColor : "rgba(154,14,17,0.1)",
+        strokeColor : "rgba(154,14,17,1)",
+        pointColor: "rgba(154,14,17,1)",
+        data : data_statistics.searches.values
+      },
+      {
+        fillColor : "rgba(249,0,5,0.1)",
+        strokeColor : "rgba(249,0,5,1)",
+        pointColor: "rgba(249,0,5,1)",
+        data : data_profit.profits.values
+      }
+
+    ]
+    }
+    options = {
+      scaleOverride : true,
+      scaleFontSize: 12,
+      scaleSteps : 10,
+      scaleStepWidth : 50000,
+      scaleStartValue : 100,
+      scaleShowLabels : true
+    }
+    var ChartInstance = new Chart(ctx);
+    ChartInstance.Line(dataSource, options);
+}
+
+function DrawBar_StatisticsClicksAndPaidbooking(data_statistics, dom_output){
+  var ctx = dom_output.get(0).getContext("2d");
+  var dataSource = {
+    labels: data_statistics.clicks.dates,
+    datasets: [
+      {
+        fillColor : "rgba(154,14,17,0.1)",
+        strokeColor : "rgba(154,14,17,1)",
+        pointColor: "rgba(154,14,17,1)",
+        data : data_statistics.clicks.values
+      },
+      {
+        fillColor : "rgba(249,0,5,0.1)",
+        strokeColor : "rgba(249,0,5,1)",
+        pointColor: "rgba(249,0,5,1)",
+        data : data_statistics.paid_bookings.values
+      }
+
+    ]
+    }
+    options = {
+      scaleOverride : true,
+      scaleFontSize: 12,
+      scaleSteps : 10,
+      scaleStepWidth : 2500,
+      scaleStartValue : 100,
+      scaleShowLabels : true
+    }
+    var ChartInstance = new Chart(ctx);
+    ChartInstance.Line(dataSource, options);
+}
+
+function DrawBar_NewAffiliateDay(data, dom_output){
+  var ctx = dom_output.get(0).getContext("2d");
+  var dataSource = {
+    labels: data.amount.dates,
+    datasets: [
+      {
+        fillColor : "rgba(51,181,229,0.1)",
+        strokeColor : "rgba(51,181,229,1)",
+        pointColor: "rgba(51,181,229,1)",
+        //pointStrokeColor: "#fff",
+        data : data.amount.values
+      }
+    ]
+    }
+    options = {
+      scaleOverride : true,
+      scaleFontSize: 12,
+      scaleSteps : 10,
+      scaleStepWidth : 5,
+      scaleStartValue : 1
+    }
+    var ChartInstance = new Chart(ctx);
+    ChartInstance.Bar(dataSource, options);
+}
 
 
 
