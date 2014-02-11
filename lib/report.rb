@@ -24,7 +24,7 @@ class Report
 
 
   def get_raw_data
-    @data = Oj.load(RestClient.get(@request_url)) if data.nil?
+    @data = Oj.load(RestClient.get(@request_url)) #if data.nil?
   end
 
   private
