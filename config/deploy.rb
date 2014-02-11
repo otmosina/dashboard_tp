@@ -61,10 +61,10 @@ task :deploy => :environment do
     #invoke :'rails:assets_precompile'
 
     to :launch do
-      queue "Kill ruby process"
+      queue "echo 'Kill ruby process'"
       queue! "ps -aef | grep -v 'grep' | grep ruby | awk '{print $2}'| xargs kill -9"
-      #queue "Start ruby process"
-      #queue! "bundle exec ruby /home/aviasales/dashboard_tp/current/application.rb > /home/aviasales/log_d.log 2> 1 &"
+      queue "echo 'Start ruby process'"
+      queue! "bundle exec ruby /home/aviasales/dashboard_tp/current/application.rb > /home/aviasales/log_d.log 2> 1 &"
       #queue "touch #{deploy_to}/tmp/restart.txt"
     end
   end
