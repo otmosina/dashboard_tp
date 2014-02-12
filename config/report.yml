@@ -11,7 +11,7 @@ aff_profit:
   url: 'http://tp.aviasales.ru/report.php?r=77&u1=24&m=1&h=bd669cd8be327219113e893213e8588cf5bd8a96&export=json'
   detailed_url: 'http://tp.aviasales.ru/report.php?r=77&u1=24&m=1&h=bd669cd8be327219113e893213e8588cf5bd8a96&export=json'
 aff_amount:
-  url: 'http://tp.aviasales.ru/report.php?r=81&u1=24&m=1&h=f3ef363e036bfacc33f7ac3a7ce698061811d2ac&export=json'
+  url: 'http://tp.aviasales.ru/report.php?r=92&u1=24&m=1&h=e06675a675f2284f17f7deb52112b38b9dad2fd1&export=json'
   detailed_url: 'http://tp.aviasales.ru/report.php?r=83&u1=24&m=1&h=d654f834fcfe30b81307606fb3d1919ca0807640&export=json'
 aff_searches:
   url: 'http://tp.aviasales.ru/report.php?r=89&u1=24&m=1&h=c77d52ca5f5087735652bcd45ce0490e146e1fc6&export=json'
@@ -21,4 +21,7 @@ aff_clicks:
   detailed_url: ''
 aff_paidbookings:
   url: 'http://tp.aviasales.ru/report.php?r=91&u1=24&m=1&h=d0ba89de5088c9d7b3d8044f56eb16369de435e4&export=json'
+  detailed_url: ''
+aff_amount_3periods:
+  url: 'http://tp.aviasales.ru/report.php?r=92&u1=24&m=1&h=e06675a675f2284f17f7deb52112b38b9dad2fd1&export=json'
   detailed_url: ''

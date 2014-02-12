@@ -97,7 +97,7 @@ class Dashboard < Sinatra::Base
 
     @data_profit = AffprofitReport.instance.fetch_data
 
-    @data_affamount = AffamountReport.instance.fetch_data
+    #@data_affamount = AffamountReport.instance.fetch_data
 
 
     AffsearchesReport.instance.type = :aff_searches
@@ -106,6 +106,8 @@ class Dashboard < Sinatra::Base
     @data_aff_clicks = AffsearchesReport.instance.fetch_data
     AffsearchesReport.instance.type = :aff_paidbookings
     @data_aff_paidbookings = AffsearchesReport.instance.fetch_data
+    AffsearchesReport.instance.type = :aff_amount_3periods
+    @data_aff_amount_3periods = AffsearchesReport.instance.fetch_data
 
     erb :index_pretty#, :layout => :post
   end

@@ -418,7 +418,7 @@ function DrawBar_NewAffiliateDay(data, dom_output){
       scaleFontSize: 12,
       scaleSteps : 10,
       scaleStepWidth : stepWidth,
-      scaleStartValue : 1,
+      scaleStartValue : 0,
       scaleShowLabels : true
     }
     var ChartInstance = new Chart(ctx);

@@ -38,7 +38,7 @@
     <div align=center style="display:inline-block">
       <p align=center><h2>Affiliate registration</h2></p>
       <span align=center>
-        <canvas id="Bar_NewAffiliate" width="600" height="200"></canvas>
+        <canvas id="Bar_NewAffiliate" width="800" height="400"></canvas>
       </span>
     </div>
     <div align=center style="display:inline-block">
@@ -103,6 +103,8 @@
           Draw_AffSearches(<%= @data_aff_searches%>, $("#Bar_Searches"), 2500 );
           Draw_AffSearches(<%= @data_aff_clicks%>, $("#Bar_Clicks") , 200);
           Draw_AffSearches(<%= @data_aff_paidbookings%>, $("#Bar_Paidbooking"), 18 );
+          Draw_AffSearches(<%= @data_aff_amount_3periods%>, $("#Bar_NewAffiliate"), 1 );
+
 
           <% if @data_widget_events %>
             DrawBar_EventsWithStatisticsInitAndShow(<%= @data_widget_events %>, <%= @data_widget_statistics %>, $("#Bar_InitsAndShows") )
@@ -112,12 +114,6 @@
           <% if @data_profit %>
           DrawBar_Profit(<%= @data_profit %>, $("#Bar_Profit"))
           <% end %>
-
-
-          <% if @data_affamount %>
-          DrawBar_NewAffiliate(<%= @data_affamount %>, $("#Bar_NewAffiliate"))
-          <% end %>
-
 
 
         };
