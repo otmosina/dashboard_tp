@@ -386,5 +386,45 @@ function DrawBar_NewAffiliateDay(data, dom_output){
     ChartInstance.Bar(dataSource, options);
 }
 
+//now day week
+//==============
+ function Draw_AffSearches(data_searches, dom_output, stepWidth){
+  var ctx = dom_output.get(0).getContext("2d");
+  var dataSource = {
+    labels: data_searches.now.dates,
+    datasets: [
+      {
+        fillColor : "rgba(22,216,146,0.1)",
+        strokeColor : "rgba(22,216,146,1)",
+        pointColor: "rgba(22,216,146,1)",
+        data : data_searches.now.values
+      },
+      {
+        fillColor : "rgba(229,148,0,0.1)",
+        strokeColor : "rgba(229,148,0,1)",
+        pointColor: "rgba(229,148,0,1)",
+        data : data_searches.day.values
+      },
+      {
+        fillColor : "rgba(249,0,5,0.1)",
+        strokeColor : "rgba(249,0,5,1)",
+        pointColor: "rgba(249,0,5,1)",
+        data : data_searches.week.values
+      },
+    ]
+    }
+    options = {
+      scaleOverride : true,
+      scaleFontSize: 12,
+      scaleSteps : 10,
+      scaleStepWidth : stepWidth,
+      scaleStartValue : 1,
+      scaleShowLabels : true
+    }
+    var ChartInstance = new Chart(ctx);
+    ChartInstance.Line(dataSource, options);
+}
+
+
 
 

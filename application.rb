@@ -12,6 +12,7 @@ require 'lib/reports/widget_statistics_report'
 require 'lib/reports/affprofit_report'
 require 'lib/reports/affstatistic_report'
 require 'lib/reports/affamount_report'
+require 'lib/reports/affsearches_report'
 require 'app/dashboard'
 require 'app/detailed_dashboard'
 

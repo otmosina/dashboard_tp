@@ -1,0 +1,126 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+<style>
+#leads {
+    width: 10px;
+    height: 10px;
+    background: rgba(249,0,5,1);
+    display:inline-block;
+}
+#searches {
+    width: 10px;
+    height: 10px;
+    background: rgba(64,64,64,1);
+    display:inline-block;
+}
+#inits {
+    width: 10px;
+    height: 10px;
+    background: rgba(22,216,146,1);
+    display:inline-block;
+}
+#shows {
+    width: 10px;
+    height: 10px;
+    background: rgba(229,148,0,1);
+    display:inline-block;
+}
+</style>
+    <meta charset="utf-8">
+    <title>Travelpayouts Dashboard</title>
+  </head>
+  <body>
+
+    <div>
+    <div style="text-align:center">
+    <div align=center style="display:inline-block">
+      <p align=center><h2>Affiliate registration</h2></p>
+      <span align=center>
+        <canvas id="Bar_NewAffiliate" width="600" height="200"></canvas>
+      </span>
+    </div>
+    <div align=center style="display:inline-block">
+      <p align=center><h2> Profit</h2></p>
+      <span align=center>
+        <canvas id="Bar_Profit" width="600" height="200"></canvas>
+      </span>
+    </div>
+  </div>
+
+    <div style="text-align:center">
+    <div align=center style="display:inline-block">
+    <p align=center><h2>Searches</h2></p>
+    <canvas id="Bar_Searches" width="800" height="400"></canvas>
+    </div>
+    <div align=center style="display:inline-block">
+    <p align=center ><h2>Clicks</h2></p>
+      <div id="inits"></div><div style="display:inline-block"><h2>Week</h2></div>
+      <div id="shows"></div><div style="display:inline-block"><h2>Day</h2></div>
+      <div id="leads"></div><div style="display:inline-block"><h2>Now</h2></div><br/>
+      <canvas id="Bar_Clicks" width="800" height="400"></canvas>
+    </div>
+    <div align=center style="display:inline-block">
+    <p align=center><h2>Paid booking</h2></p>
+      <canvas id="Bar_Paidbooking" width="800" height="400"></canvas>
+    </div>
+  </div>
+
+
+  <div style="text-align:center">
+    <div align=center style="display:inline-block">
+    <div id="inits"></div><div style="display:inline-block"><h2>Inits</h2></div>
+    <div id="shows"></div><div style="display:inline-block"><h2>Shows</h2></div><br/>
+    <canvas id="Bar_InitsAndShows" width="600" height="400"></canvas>
+    </div>
+    <div align=center style="display:inline-block">
+      <div id="leads"></div><div style="display:inline-block"><h2>Leads</h2></div>
+      <div id="searches"></div><div style="display:inline-block"><h2>Searches<h2></div><br/>
+      <canvas id="Bar_LeadsAndSearches" width="600" height="400"></canvas>
+    </div>
+  </div>
+</div>
+
+
+
+    <script type="text/javascript" src="Chart.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
+    <script type="text/javascript" src="http://cdn3.devexpress.com/jslib/13.2.6/js/dx.chartjs.js"></script>
+    <script src="javascripts/application.js"></script>
+      <script type="text/javascript">
+        refreshInreval = 1000*60*3
+        setInterval(refreshPage, refreshInreval);
+        $().ready(function(){
+          drawGraphs();
+        });
+        function refreshPage(){
+          location.reload();
+        }
+        function drawGraphs(){
+
+          Draw_AffSearches(<%= @data_aff_searches%>, $("#Bar_Searches"), 2500 );
+          Draw_AffSearches(<%= @data_aff_clicks%>, $("#Bar_Clicks") , 200);
+          Draw_AffSearches(<%= @data_aff_paidbookings%>, $("#Bar_Paidbooking"), 18 );
+
+          <% if @data_widget_events %>
+            DrawBar_EventsWithStatisticsInitAndShow(<%= @data_widget_events %>, <%= @data_widget_statistics %>, $("#Bar_InitsAndShows") )
+            DrawBar_EventsWithStatisticsLeadAndSearch(<%= @data_widget_events %>, <%= @data_widget_statistics %>, $("#Bar_LeadsAndSearches") )
+          <% end %>
+
+          <% if @data_profit %>
+          DrawBar_Profit(<%= @data_profit %>, $("#Bar_Profit"))
+          <% end %>
+
+
+          <% if @data_affamount %>
+          DrawBar_NewAffiliate(<%= @data_affamount %>, $("#Bar_NewAffiliate"))
+          <% end %>
+
+
+
+        };
+      </script>
+  </body>
+</html>

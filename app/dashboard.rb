@@ -80,12 +80,33 @@ class Dashboard < Sinatra::Base
   end
 
   get '/dashboard' do
-   @data_widget_events = WidgetEventsReport.instance.fetch_data
+
+    @data_widget_events = WidgetEventsReport.instance.fetch_data
     @data_widget_statistics = WidgetStatisticsReport.instance.fetch_data
     @data_profit = AffprofitReport.instance.fetch_data
     @data_statistics = AffstatisticReport.instance.fetch_data
     @data_affamount = AffamountReport.instance.fetch_data
+
     erb :index#, :layout => :post
+  end
+
+  get '/dashboard_new' do
+
+    @data_widget_events = WidgetEventsReport.instance.fetch_data
+    @data_widget_statistics = WidgetStatisticsReport.instance.fetch_data
+    @data_profit = AffprofitReport.instance.fetch_data
+    @data_statistics = AffstatisticReport.instance.fetch_data
+    @data_affamount = AffamountReport.instance.fetch_data
+
+
+    AffsearchesReport.instance.type = :aff_searches
+    @data_aff_searches = AffsearchesReport.instance.fetch_data
+    AffsearchesReport.instance.type = :aff_clicks
+    @data_aff_clicks = AffsearchesReport.instance.fetch_data
+    AffsearchesReport.instance.type = :aff_paidbookings
+    @data_aff_paidbookings = AffsearchesReport.instance.fetch_data
+
+    erb :index_pretty#, :layout => :post
   end
 
 

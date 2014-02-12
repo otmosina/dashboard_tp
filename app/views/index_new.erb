@@ -1,0 +1,89 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+<style>
+#leads {
+    width: 10px;
+    height: 10px;
+    background: rgba(249,0,5,1);
+    display:inline-block;
+}
+#searches {
+    width: 10px;
+    height: 10px;
+    background: rgba(64,64,64,1);
+    display:inline-block;
+}
+#inits {
+    width: 10px;
+    height: 10px;
+    background: rgba(22,216,146,1);
+    display:inline-block;
+}
+#shows {
+    width: 10px;
+    height: 10px;
+    background: rgba(229,148,0,1);
+    display:inline-block;
+}
+</style>
+    <meta charset="utf-8">
+    <title>Travelpayouts Dashboard</title>
+  </head>
+  <body>
+
+<div>
+    <div style="text-align:center">
+    <div align=center style="display:inline-block">
+      <p align=center><h2>Affiliate searches</h2></p>
+      <span align=center>
+        <canvas id="Bar_AffSearches" width="1300" height="600"></canvas>
+      </span>
+    </div>
+  </div>
+    <div style="text-align:center">
+    <div align=center style="display:inline-block">
+      <p align=center><h2>Affiliate clicks</h2></p>
+      <span align=center>
+        <canvas id="Bar_AffClics" width="1300" height="600"></canvas>
+      </span>
+    </div>
+  </div>
+    <div style="text-align:center">
+    <div align=center style="display:inline-block">
+      <p align=center><h2>Affiliate bookings</h2></p>
+      <span align=center>
+        <canvas id="Bar_AffPaidbookings" width="1300" height="600"></canvas>
+      </span>
+    </div>
+  </div>
+</div>
+
+
+
+
+    <script type="text/javascript" src="Chart.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
+    <script type="text/javascript" src="http://cdn3.devexpress.com/jslib/13.2.6/js/dx.chartjs.js"></script>
+    <script src="javascripts/application.js"></script>
+      <script type="text/javascript">
+        refreshInreval = 1000*60*3
+        setInterval(refreshPage, refreshInreval);
+        $().ready(function(){
+          drawGraphs();
+        });
+        function refreshPage(){
+          location.reload();
+        }
+        function drawGraphs(){
+
+          Draw_AffSearches(<%= @data_aff_searches%>, $("#Bar_AffSearches"), 2500 );
+          Draw_AffSearches(<%= @data_aff_clicks%>, $("#Bar_AffClics") , 200);
+          Draw_AffSearches(<%= @data_aff_paidbookings%>, $("#Bar_AffPaidbookings"), 18 );
+
+        };
+      </script>
+  </body>
+</html>
