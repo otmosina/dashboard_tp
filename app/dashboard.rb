@@ -94,8 +94,9 @@ class Dashboard < Sinatra::Base
 
     @data_widget_events = WidgetEventsReport.instance.fetch_data
     @data_widget_statistics = WidgetStatisticsReport.instance.fetch_data
+
     @data_profit = AffprofitReport.instance.fetch_data
-    @data_statistics = AffstatisticReport.instance.fetch_data
+
     @data_affamount = AffamountReport.instance.fetch_data
 
 
