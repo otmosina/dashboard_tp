@@ -12,6 +12,9 @@ periods:
     three_periods:
       hourly: 'http://tp.aviasales.ru/report.php?r=92&u1=24&m=1&h=e06675a675f2284f17f7deb52112b38b9dad2fd1&export=json'
   aff_profit:
+    three_periods:
+      hourly: ''
+      daily: 'http://tp.aviasales.ru/report.php?r=94&u1=24&m=1&h=c6d24feb9416f324085e61c79368fd874b901ee4&export=json'
     one_periods:
       hourly: ''
       daily: 'http://tp.aviasales.ru/report.php?r=77&u1=24&m=1&h=bd669cd8be327219113e893213e8588cf5bd8a96&export=json'

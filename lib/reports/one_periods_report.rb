@@ -6,7 +6,7 @@ class OnePeriodsReport < Report3
 private
   def prepare_data
     result = {
-      'now' => {
+      'first_series' => {
         'dates' => @data.map{|values|values[0]},
         'values' => @data.map{|values|values[1]}
       }

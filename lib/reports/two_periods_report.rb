@@ -13,10 +13,6 @@ private
       'second_series' => {
         'dates' => @data[0].map{|values|values[0]},
         'values' => @data[1].map{|values|values[1]}
-      },
-      'third_series' => {
-        'dates' => @data[0].map{|values|values[0]},
-        'values' => @data[2].map{|values|values[1]}
       }
     }
     Oj.dump(result)

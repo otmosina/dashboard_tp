@@ -8,15 +8,8 @@ class Report
     @config = YAML::load(File.open('config/report.yml'))
   end
 
-  def detailed_fetch_data
-    @mode = :detailed
-    @request_url = config[report_type.to_s]["detailed_url"]
-    get_raw_data
-    prepare_data
-  end
 
   def fetch_data
-    @mode = :default
     @request_url = config["custom"][report_type.to_s]["url"]
     get_raw_data
     prepare_data

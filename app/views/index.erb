@@ -105,14 +105,30 @@
           Draw_ThreePeriod(<%= @data_aff_paidbookings%>, $("#Bar_Paidbooking"), 18 );
           Draw_ThreePeriod(<%= @data_aff_amount_3periods%>, $("#Bar_NewAffiliate"), 1 );
 
+          Draw_ThreePeriod(<%= @data_aff_profit_3periods %>, $("#Bar_Profit"), 50000)
 
-          <% if @data_widget_events %>
-            DrawBar_EventsWithStatisticsInitAndShow(<%= @data_widget_events %>, <%= @data_widget_statistics %>, $("#Bar_InitsAndShows") )
-            DrawBar_EventsWithStatisticsLeadAndSearch(<%= @data_widget_events %>, <%= @data_widget_statistics %>, $("#Bar_LeadsAndSearches") )
-          <% end %>
+          Draw_СompareFourLines(
+            <%= Oj.dump(@data_widget_events['first_values']) %>,
+            <%= Oj.dump(@data_widget_statistics['first_values'])%>,
+            <%= Oj.dump(@data_widget_events['second_values'])%>,
+            <%= Oj.dump(@data_widget_statistics['second_values'])%>,
+            $("#Bar_InitsAndShows"), 10000);
+
+          Draw_СompareFourLines(
+            <%= Oj.dump(@data_widget_events['third_values'])%>,
+            <%= Oj.dump(@data_widget_statistics['third_values'])%>,
+            <%= Oj.dump(@data_widget_events['fourth_values'])%>,
+            <%= Oj.dump(@data_widget_statistics['fourth_values'])%>,
+            $("#Bar_LeadsAndSearches"), 150);
 
 
-          Draw_OnePeriod(<%= @data_aff_profit_1periods %>, $("#Bar_Profit"), 50000)
+
+            //DrawBar_EventsWithStatisticsInitAndShow(<%= @data_widget_events %>, <%= @data_widget_statistics %>, $("#Bar_InitsAndShows") )
+            //DrawBar_EventsWithStatisticsLeadAndSearch(<%= @data_widget_events %>, <%= @data_widget_statistics %>, $("#Bar_LeadsAndSearches") )
+
+
+
+
 
         };
       </script>
