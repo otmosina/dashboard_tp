@@ -38,13 +38,13 @@
     <div align=center style="display:inline-block">
       <p align=center><h2>Affiliate registration</h2></p>
       <span align=center>
-        <canvas id="Bar_NewAffiliate" width="600" height="200"></canvas>
+        <canvas id="Bar_NewAffiliate" width="800" height="400"></canvas>
       </span>
     </div>
     <div align=center style="display:inline-block">
       <p align=center><h2> Profit</h2></p>
       <span align=center>
-        <canvas id="Bar_Profit" width="600" height="200"></canvas>
+        <canvas id="Bar_Profit" width="800" height="400"></canvas>
       </span>
     </div>
   </div>
@@ -52,15 +52,18 @@
     <div style="text-align:center">
     <div align=center style="display:inline-block">
     <p align=center><h2>Searches</h2></p>
-    <canvas id="Bar_Searches" width="600" height="250"></canvas>
+    <canvas id="Bar_Searches" width="800" height="400"></canvas>
     </div>
     <div align=center style="display:inline-block">
     <p align=center ><h2>Clicks</h2></p>
-      <canvas id="Bar_Clicks" width="600" height="250"></canvas>
+      <div id="inits"></div><div style="display:inline-block"><h2>Week</h2></div>
+      <div id="shows"></div><div style="display:inline-block"><h2>Day</h2></div>
+      <div id="leads"></div><div style="display:inline-block"><h2>Now</h2></div><br/>
+      <canvas id="Bar_Clicks" width="800" height="400"></canvas>
     </div>
     <div align=center style="display:inline-block">
     <p align=center><h2>Paid booking</h2></p>
-      <canvas id="Bar_Paidbooking" width="600" height="250"></canvas>
+      <canvas id="Bar_Paidbooking" width="800" height="400"></canvas>
     </div>
   </div>
 
@@ -96,24 +99,21 @@
           location.reload();
         }
         function drawGraphs(){
+
+          Draw_ThreePeriod(<%= @data_aff_searches%>, $("#Bar_Searches"), 2500 );
+          Draw_ThreePeriod(<%= @data_aff_clicks%>, $("#Bar_Clicks") , 200);
+          Draw_ThreePeriod(<%= @data_aff_paidbookings%>, $("#Bar_Paidbooking"), 18 );
+          Draw_ThreePeriod(<%= @data_aff_amount_3periods%>, $("#Bar_NewAffiliate"), 1 );
+
+
           <% if @data_widget_events %>
             DrawBar_EventsWithStatisticsInitAndShow(<%= @data_widget_events %>, <%= @data_widget_statistics %>, $("#Bar_InitsAndShows") )
             DrawBar_EventsWithStatisticsLeadAndSearch(<%= @data_widget_events %>, <%= @data_widget_statistics %>, $("#Bar_LeadsAndSearches") )
           <% end %>
 
-          <% if @data_profit %>
-          DrawBar_Profit(<%= @data_profit %>, $("#Bar_Profit"))
-          <% end %>
 
-          <% if @data_statistics %>
-          DrawBar_Searches(<%= @data_statistics %>, $("#Bar_Searches"))
-          DrawBar_Clicks(<%= @data_statistics %>, $("#Bar_Clicks"))
-          DrawBar_Paidbooking(<%= @data_statistics %>, $("#Bar_Paidbooking"))
-          <% end %>
+          Draw_OnePeriod(<%= @data_aff_profit_1periods %>, $("#Bar_Profit"), 50000)
 
-          <% if @data_affamount %>
-          DrawBar_NewAffiliate(<%= @data_affamount %>, $("#Bar_NewAffiliate"))
-          <% end %>
         };
       </script>
   </body>

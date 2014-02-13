@@ -1,7 +1,7 @@
-class AffsearchesReport < Report
-  def initialize
-    @type = :aff_searches
-    super
+class ThreePeriodsReport < Report3
+  def initialize report_type_in
+    @period_type = :three_periods
+    super report_type_in
   end
 private
   def prepare_data
