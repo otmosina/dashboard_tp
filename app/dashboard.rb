@@ -1,13 +1,13 @@
 class Dashboard < Sinatra::Base
 
   before '/dashboard_new' do
-    @report_affsearches_3period      ||= Report.new :aff_searches, :three_periods    #ThreePeriodsReport.new :aff_searches
-    @report_affclicks_3period        ||= Report.new :aff_clicks, :three_periods   #ThreePeriodsReport.new :aff_clicks
-    @report_affpaidbookings_3period  ||= Report.new :aff_paidbookings, :three_periods    #ThreePeriodsReport.new :aff_paidbookings
-    @report_affamount_3period        ||= Report.new :aff_amount, :three_periods    #ThreePeriodsReport.new :aff_amount
-    @report_affprofit_3period        ||= Report.new :aff_profit, :three_periods    #ThreePeriodsReport.new :aff_profit
-    @report_widget_events_custom     ||= Report.new :widget_events, :custom    #CustomReport.new :widget_events
-    @report_widget_statistics_custom ||= Report.new :widget_statistics, :custom    #CustomReport.new :widget_statistics
+    @report_affsearches_3period      ||= Report.new :aff_searches, :three_periods
+    @report_affclicks_3period        ||= Report.new :aff_clicks, :three_periods
+    @report_affpaidbookings_3period  ||= Report.new :aff_paidbookings, :three_periods
+    @report_affamount_3period        ||= Report.new :aff_amount, :three_periods
+    @report_affprofit_3period        ||= Report.new :aff_profit, :three_periods
+    @report_widget_events_custom     ||= Report.new :widget_events, :custom
+    @report_widget_statistics_custom ||= Report.new :widget_statistics, :custom
   end
 
 
