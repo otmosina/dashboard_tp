@@ -1,6 +1,6 @@
 class Dashboard < Sinatra::Base
 
-  before '/dashboard_new' do
+  before '/dashboard/hourly' do
     @report_affsearches_3period      ||= Report.new :aff_searches, :three_periods
     @report_affclicks_3period        ||= Report.new :aff_clicks, :three_periods
     @report_affpaidbookings_3period  ||= Report.new :aff_paidbookings, :three_periods
@@ -11,7 +11,7 @@ class Dashboard < Sinatra::Base
   end
 
 
-  get '/dashboard_new' do
+  get '/dashboard/hourly' do
     @data_widget_events =  @report_widget_events_custom.fetch :custom
     @data_widget_statistics = @report_widget_statistics_custom.fetch :custom
 
@@ -22,8 +22,7 @@ class Dashboard < Sinatra::Base
     @data_aff_paidbookings    = @report_affpaidbookings_3period.fetch :hourly
     @data_aff_amount_3periods = @report_affamount_3period.fetch :hourly
     @data_aff_profit_3periods = @report_affprofit_3period.fetch :daily
-
-    erb :index#, :layout => :post
+    erb :index, :layout => :layout
   end
 
 
