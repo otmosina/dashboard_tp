@@ -25,5 +25,28 @@ class Dashboard < Sinatra::Base
     erb :index, :layout => :layout
   end
 
+  before '/dashboard/widget_stat' do
+    @widget_inits       ||= Report.new :widget_statistics_inits, :three_periods
+    @widget_shows       ||= Report.new :widget_statistics_shows, :three_periods
+    @widget_leads       ||= Report.new :widget_statistics_leads, :three_periods
+    @widget_searches    ||= Report.new :widget_statistics_searches, :three_periods
+    @widget_clicks      ||= Report.new :widget_statistics_clicks, :three_periods
+    @widget_bookings    ||= Report.new :widget_statistics_bookings, :three_periods
+    @widget_profit      ||= Report.new :widget_statistics_profit, :three_periods
+  end
+
+  get '/dashboard/widget_stat' do
+
+    @data_widget_inits   = @widget_inits.fetch :hourly
+    @data_widget_shows   = @widget_shows.fetch :hourly
+    @data_widget_leads   = @widget_leads.fetch :hourly
+    @data_widget_searches= @widget_searches.fetch :hourly
+    @data_widget_clicks  = @widget_clicks.fetch :hourly
+    @data_widget_bookings= @widget_bookings.fetch :hourly
+    @data_widget_profit    = @widget_profit.fetch :hourly
+
+    erb :widget_stat, :layout => :layout
+  end
+
 
 end

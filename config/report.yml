@@ -18,6 +18,27 @@ periods:
     one_periods:
       hourly: ''
       daily: 'http://tp.aviasales.ru/report.php?r=77&u1=24&m=1&h=bd669cd8be327219113e893213e8588cf5bd8a96&export=json'
+  widget_statistics_inits:
+    three_periods:
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=inits&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+  widget_statistics_shows:
+    three_periods:
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=shows&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+  widget_statistics_leads:
+    three_periods:
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=leads&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+  widget_statistics_searches:
+    three_periods:
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=searches&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+  widget_statistics_clicks:
+    three_periods:
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=clicks&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+  widget_statistics_bookings:
+    three_periods:
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=bookings&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+  widget_statistics_profit:
+    three_periods:
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=profit&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
 custom:
   widget_events:
     url: 'http://tp.aviasales.ru/report.php?r=73&u1=24&m=1&h=8cd6b09cb12eb6ce7e29859c9b13efe1cf8d81bf&export=json'
