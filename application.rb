@@ -6,16 +6,7 @@ require 'yaml'
 
 $:.unshift File.dirname(__FILE__)
 
-
-require 'singleton'
-
 require 'lib/report'
-require 'lib/report3'
-require 'lib/reports/widget_events_report'
-require 'lib/reports/widget_statistics_report'
-require 'lib/reports/custom_report'
-require 'lib/reports/three_periods_report.rb'
-require 'lib/reports/one_periods_report.rb'
 require 'app/dashboard'
 require 'app/detailed_dashboard'
 
