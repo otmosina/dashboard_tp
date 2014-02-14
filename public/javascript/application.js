@@ -141,9 +141,9 @@ function Draw_СompareFourLines(data_line1, data_line2, data_line3, data_line4, 
     labels: data.first_series.dates,
     datasets: [
       {
-        fillColor : "rgba(22,216,146,0.1)",
-        strokeColor : "rgba(22,216,146,1)",
-        pointColor: "rgba(22,216,146,1)",
+        fillColor : "rgba(249,0,5,0.1)",
+        strokeColor : "rgba(249,0,5,1)",
+        pointColor: "rgba(249,0,5,1)",
         data : data.first_series.values
       },
       {
@@ -153,9 +153,9 @@ function Draw_СompareFourLines(data_line1, data_line2, data_line3, data_line4, 
         data : data.second_series.values
       },
       {
-        fillColor : "rgba(249,0,5,0.1)",
-        strokeColor : "rgba(249,0,5,1)",
-        pointColor: "rgba(249,0,5,1)",
+        fillColor : "rgba(22,216,146,0.1)",
+        strokeColor : "rgba(22,216,146,1)",
+        pointColor: "rgba(22,216,146,1)",
         data : data.third_series.values
       },
     ]
