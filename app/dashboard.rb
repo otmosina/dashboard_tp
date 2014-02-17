@@ -23,6 +23,7 @@ class Dashboard < Sinatra::Base
     @data_widget_clicks   = Report.fetch :widget_statistics_clicks, :three_periods, :hourly
     @data_widget_bookings = Report.fetch :widget_statistics_bookings, :three_periods, :hourly
     @data_widget_profit   = Report.fetch :widget_statistics_profit, :three_periods, :hourly
+    @data_widget_paid_bookings_profit   = Report.fetch :widget_paid_bookings_profit, :three_periods, :hourly
     erb :widget_stat, :layout => :layout
   end
 end
