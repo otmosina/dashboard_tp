@@ -1,17 +1,17 @@
-class Report
-  attr_accessor  :report_type, :period_type, :config
+require "timedcache"
+module Report
+  attr_accessor  :report_type, :period_type, :mode_report, :config, :cache
   attr_reader :data
 
   PERIOD_TYPES = [ :one_periods, :two_periods, :three_periods, :custom ]
   MODE_REPORTS_TYPES = [ :hourly, :daily, :custom ]
+  @config = YAML::load(File.open('config/report.yml'))
+  @cache = TimedCache.new
 
-  def initialize report_type_in, period_type_in
+  def fetch report_type_in, period_type_in, mode_report_in
     @report_type = report_type_in
     @period_type = period_type_in
-    @config = YAML::load(File.open('config/report.yml'))
-  end
-
-  def fetch mode_report
+    @mode_report = mode_report_in
     if MODE_REPORTS_TYPES.member? mode_report
       if mode_report == :custom
         @request_url = config["custom"][report_type.to_s]["url"] rescue nil
@@ -19,22 +19,36 @@ class Report
         @request_url = config["periods"][report_type.to_s][period_type.to_s][mode_report.to_s] rescue nil
       end
         return [] if @request_url.nil?
-        get_raw_data
+        @data = get_raw_data
         prepare_data
     else
       []
     end
   end
+  extend self
 private
 
-
   def get_raw_data
-    @data = Oj.load(RestClient.get(@request_url)) if data.nil?
+    if cache[cache_key].nil?
+      request_data = Oj.load(RestClient.get(@request_url))
+      cache.put cache_key, request_data, cache_expare
+    end
+    cache[cache_key]
+  end
+
+
+  def cache_key
+    key = [ @report_type, "_", @period_type, "_", @mode_report ].join.to_sym
+    [ @report_type, "_", @period_type, "_", @mode_report ].join.to_sym
+  end
+
+  def cache_expare
+    180
   end
 
 
   def prepare_data
-    case period_type
+    case @period_type
       when :one_periods   then prepare_one_periods
       when :two_periods   then prepare_two_periods
       when :three_periods then prepare_three_periods

@@ -16,8 +16,10 @@ class DashboardEndpoint < Sinatra::Base
   set :static, true
   set :public_folder, File.dirname(__FILE__) + '/public'
 
+
   #set :public, File.dirname(__FILE__) + '/public'#'public/javascript'
   #set :public, File.dirname(__FILE__) + '/public/javascript'
+
   get '/javascripts/application.js' do
     content_type 'application/javascript'
     js = File.read("public/javascript/application.js")
@@ -27,5 +29,7 @@ class DashboardEndpoint < Sinatra::Base
   use Dashboard
   use DetailedDashboard
 end
+
+
 DashboardEndpoint.run!
 
