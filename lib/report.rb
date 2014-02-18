@@ -29,11 +29,12 @@ module Report
 private
 
   def get_raw_data
-    if cache[cache_key].nil?
-      request_data = Oj.load(RestClient.get(@request_url))
-      cache.put cache_key, request_data, cache_expare
-    end
-    cache[cache_key]
+    #if cache[cache_key].nil?
+    #  request_data = Oj.load(RestClient.get(@request_url))
+    #  cache.put cache_key, request_data, cache_expare
+    #end
+    #cache[cache_key]
+    Oj.load(RestClient.get(@request_url))
   end
 
 
