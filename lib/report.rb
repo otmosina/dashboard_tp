@@ -4,7 +4,7 @@ module Report
   attr_reader :data
 
   PERIOD_TYPES = [ :one_periods, :two_periods, :three_periods, :custom ]
-  MODE_REPORTS_TYPES = [ :hourly, :daily, :custom ]
+  MODE_REPORTS_TYPES = [ :hourly, :daily, :fifteen_min, :custom ]
   @config = YAML::load(File.open('config/report.yml'))
   @cache = TimedCache.new
 
@@ -26,6 +26,7 @@ module Report
     end
   end
   extend self
+
 private
 
   def get_raw_data
@@ -34,6 +35,7 @@ private
     #  cache.put cache_key, request_data, cache_expare
     #end
     #cache[cache_key]
+    puts "request url #{@request_url}"
     Oj.load(RestClient.get(@request_url))
   end
 

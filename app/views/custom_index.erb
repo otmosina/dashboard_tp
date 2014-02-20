@@ -1,0 +1,35 @@
+<% canvas_height = 400 %>
+<% @reports.each_with_index do |report, index| %>
+<div class='scalable one-third'>
+  <div><strong><%= report[:title] %></strong></div>
+  <canvas id="report_<%= index.to_s %>" width="1000" height="<%= canvas_height %>"></canvas>
+</div>
+
+<% end %>
+
+
+      <script type="text/javascript">
+        $(window).on('resize', function() {
+          var window_height = $(this).outerHeight();
+
+          $('.scalable').css('height', window_height / 3);
+          $('.scalable').css('-webkit-transform', 'scale(' + window_height / ( <%= canvas_height + 30 %> * 3 ) + ')');
+          $('.scalable').css('-ms-transform', 'scale(' + window_height / ( <%= canvas_height + 30 %> * 3 ) + ')');
+          $('.scalable').css('transform', 'scale(' + window_height / ( <%= canvas_height + 30 %> * 3 ) + ')');
+        }).trigger('resize').scrollTop(100500).scrollLeft(100500);
+
+        refreshInreval = 1000*60*3
+        setInterval(refreshPage, refreshInreval);
+        $().ready(function(){
+          drawGraphs();
+        });
+        function refreshPage(){
+          location.reload();
+        }
+        function drawGraphs(){
+          <% @reports.each_with_index do |report, index| %>
+            Draw_ThreePeriod(<%= report[:data] %>, $("#report_<%= index.to_s %>"), <%= report[:step] %>);
+          <% end %>
+        };
+      </script>
+
