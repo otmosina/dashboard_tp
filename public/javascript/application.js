@@ -206,7 +206,7 @@ function Draw_СompareFourLines(data_line1, data_line2, data_line3, data_line4, 
  function Draw_OnePeriod(data, dom_output, stepWidth){
   var ctx = dom_output.get(0).getContext("2d");
   var dataSource = {
-    labels: data.first_series.values,
+    labels: data.first_series.dates,
     datasets: [
       {
         fillColor : "rgba(22,216,146,0.1)",

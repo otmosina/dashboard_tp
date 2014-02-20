@@ -1,0 +1,66 @@
+<%
+  canvas_height = 450
+  canvas_width = canvas_height / 9 * 16 #16:9
+%>
+  <div class='scalable one-third'>
+    <div>
+      <i id="leads"></i><strong>Inits</strong>
+      <i id="searches"></i><strong>Shows</strong>
+    </div>
+    <canvas id="Bar_InitsAndShows" width="<%= canvas_width %>" height="<%= canvas_height %>"></canvas>
+  </div>
+  <div class='scalable one-third'>
+    <div>
+      <i id="leads"></i><strong>Leads</strong>
+      <i id="searches"></i><strong>Searches</strong>
+    </div>
+    <canvas id="Bar_LeadsAndSearches" width="<%= canvas_width %>" height="<%= canvas_height %>"></canvas>
+  </div>
+
+      <script type="text/javascript">
+        $(window).on('resize', function() {
+          var window_height = $(this).outerHeight() - 50,
+              window_width = $(this).outerWidth() - 50,
+              scale_height = window_height / ( <%= canvas_height + 30 %> * 3 ),
+              scale_width = window_width / ( <%= canvas_width + 5 %> * 3 ),
+              scale = scale_width + ', ' + scale_height;
+
+
+          $('.scalable').css('height', window_height / 3).
+            css('-webkit-transform', 'scale(' + scale + ')').
+            css('-ms-transform', 'scale(' + scale + ')').
+            css('transform', 'scale(' + scale + ')');
+          first_position = $('.scalable:first-child').position();
+          $('body').css('position','relative').
+            css('overflow', 'hidden').
+            css('top', -first_position.top + 5).
+            css('left', -first_position.left + 5);
+        }).trigger('resize')
+
+        refreshInreval = 1000*60*3
+        setInterval(refreshPage, refreshInreval);
+        $().ready(function(){
+          drawGraphs();
+        });
+        function refreshPage(){
+          location.reload();
+        }
+        function drawGraphs(){
+
+          Draw_СompareFourLines(
+            <%= Oj.dump(@data_widget_events['first_values']) %>,
+            <%= Oj.dump(@data_widget_statistics['first_values'])%>,
+            <%= Oj.dump(@data_widget_events['second_values'])%>,
+            <%= Oj.dump(@data_widget_statistics['second_values'])%>,
+            $("#Bar_InitsAndShows"), 10000);
+
+          Draw_СompareFourLines(
+            <%= Oj.dump(@data_widget_events['third_values'])%>,
+            <%= Oj.dump(@data_widget_statistics['third_values'])%>,
+            <%= Oj.dump(@data_widget_events['fourth_values'])%>,
+            <%= Oj.dump(@data_widget_statistics['fourth_values'])%>,
+            $("#Bar_LeadsAndSearches"), 150);
+
+        };
+      </script>
+
