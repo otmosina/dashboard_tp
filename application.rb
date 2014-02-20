@@ -13,8 +13,7 @@ require 'hiredis'
 require 'redis'
 require 'redis/connection/hiredis'
 
-$redis = Hiredis::Connection.new
-$redis.connect("127.0.0.1", 6379)
+$redis = Redis.new(host: "127.0.0.1", port: 6379)
 
 class DashboardEndpoint < Sinatra::Base
   set :port, 8080

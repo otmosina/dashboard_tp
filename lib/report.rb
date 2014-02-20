@@ -3,7 +3,7 @@ module Report
   attr_accessor  :report_type, :period_type, :mode_report, :config, :cache
   attr_reader :data
 
-  CACHE_TTL = 10 * 60
+  CACHE_TTL = 5 * 60
   PERIOD_TYPES = [ :one_periods, :two_periods, :three_periods, :custom ]
   MODE_REPORTS_TYPES = [ :hourly, :daily, :fifteen_min, :custom ]
   @config = YAML::load(File.open('config/report.yml'))
@@ -28,26 +28,32 @@ module Report
       end
     end
   end
+
+  def clear_cache
+    $redis.keys("dashboard*").each do |key|
+      $redis.del(key)
+    end
+  end
+
   extend self
+
 
 private
 
   def fetch_cache
-    $redis.write ['GET', cache_key]
-    cached = $redis.read
+    cached = $redis.get cache_key
     #p cached
     return Oj.load(cached) if cached
     data = yield
-    $redis.write ['SET', cache_key, Oj.dump(data)]
-    $redis.write ['EXPIRE', cache_key, CACHE_TTL]
-    $redis.read
-    $redis.read
+    $redis.set  cache_key, Oj.dump(data)
+    $redis.expire cache_key, CACHE_TTL
     data
   end
 
   def cache_key
-    [@report_type, @period_type, @mode_report].join(?:)
+    ["dashboard", report_type, period_type, mode_report].join(?:)
   end
+
 
   def get_raw_data
     #if cache[cache_key].nil?

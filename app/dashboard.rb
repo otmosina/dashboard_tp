@@ -29,6 +29,9 @@ class Dashboard < Sinatra::Base
 
   before do
     @reports = []
+    if params[:clear_cache]
+      Report.clear_cache
+    end
   end
 
   get '/dashboard/hourly' do
