@@ -12,8 +12,8 @@
 
       <script type="text/javascript">
         $(window).on('resize', function() {
-          var window_height = $(this).outerHeight(),
-              window_width = $(this).outerWidth(),
+          var window_height = $(this).outerHeight() - 50,
+              window_width = $(this).outerWidth() - 50,
               scale_height = window_height / ( <%= canvas_height + 30 %> * 3 ),
               scale_width = window_width / ( <%= canvas_width + 5 %> * 3 ),
               scale = scale_width + ', ' + scale_height;

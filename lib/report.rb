@@ -35,7 +35,7 @@ private
   def fetch_cache
     $redis.write ['GET', cache_key]
     cached = $redis.read
-    p cached
+    #p cached
     return Oj.load(cached) if cached
     data = yield
     $redis.write ['SET', cache_key, Oj.dump(data)]
