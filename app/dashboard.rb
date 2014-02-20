@@ -1,5 +1,9 @@
 class Dashboard < Sinatra::Base
   before do
+
+  @canvas_height = 450
+  @canvas_width = @canvas_height / 9 * 16 #16:9
+
     @reports = []
     if params[:clear_cache]
       Report.clear_cache

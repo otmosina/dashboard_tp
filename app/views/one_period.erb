@@ -1,43 +1,12 @@
-<%
-  canvas_height = 450
-  canvas_width = canvas_height / 9 * 16 #16:9
-%>
 <% @reports.each_with_index do |report, index| %>
   <div class='scalable one-third'>
     <div><strong><%= report[:title] %></strong></div>
-    <canvas id="report_<%= index.to_s %>" width="<%= canvas_width %>" height="<%= canvas_height %>"></canvas>
+    <canvas id="report_<%= index.to_s %>" width="<%= @canvas_width %>" height="<%= @canvas_height %>"></canvas>
   </div>
 <% end %>
 
 
       <script type="text/javascript">
-        $(window).on('resize', function() {
-          var window_height = $(this).outerHeight() - 50,
-              window_width = $(this).outerWidth() - 50,
-              scale_height = window_height / ( <%= canvas_height + 30 %> * 3 ),
-              scale_width = window_width / ( <%= canvas_width + 5 %> * 3 ),
-              scale = scale_width + ', ' + scale_height;
-
-
-          $('.scalable').css('height', window_height / 3).
-            css('-webkit-transform', 'scale(' + scale + ')').
-            css('-ms-transform', 'scale(' + scale + ')').
-            css('transform', 'scale(' + scale + ')');
-          first_position = $('.scalable:first-child').position();
-          $('body').css('position','relative').
-            css('overflow', 'hidden').
-            css('top', -first_position.top + 5).
-            css('left', -first_position.left + 5);
-        }).trigger('resize')
-
-        refreshInreval = 1000*60*3;
-        setInterval(refreshPage, refreshInreval);
-        $().ready(function(){
-          drawGraphs();
-        });
-        function refreshPage(){
-          location.reload();
-        }
         function drawGraphs(){
           <% @reports.each_with_index do |report, index| %>
             Draw_OnePeriod(<%= Oj.dump(report[:data]) %>, $("#report_<%= index.to_s %>"), <%= report[:step] %>);
