@@ -36,44 +36,46 @@ class Dashboard < Sinatra::Base
     #              title: "Affiliate registration",
     #              step: 1
     #            }
-    @reports << { data: Report.fetch( :aff_searches, :three_periods, :hourly ),
-                  title: "Searches",
-                  step: 2500
-                }
-    @reports << { data: Report.fetch( :aff_clicks, :three_periods, :hourly ),
-                  title: "Clicks",
-                  step: 200
-                }
-    @reports << { data: Report.fetch( :aff_paidbookings, :three_periods, :hourly ),
-                  title: "Paid bookings",
-                  step: 18
-                }
+    @reports += [
+      {
+        data: Report.fetch( :aff_searches, :three_periods, :hourly ),
+        title: "Searches",
+        step: 2500
+      },{
+        data: Report.fetch( :aff_clicks, :three_periods, :hourly ),
+        title: "Clicks",
+        step: 200
+      },{
+        data: Report.fetch( :aff_paidbookings, :three_periods, :hourly ),
+        title: "Paid bookings",
+        step: 18
+      },{
+        data: Report.fetch( :widget_statistics_inits, :three_periods, :hourly ),
+        title: "Inits widget",
+        step: 10000
+      },{
+        data: Report.fetch( :widget_statistics_leads, :three_periods, :hourly ),
+        title: "Leads widget",
+        step: 150
+      },{
+        data: Report.fetch( :widget_statistics_searches, :three_periods, :hourly ),
+        title: "Searches widget",
+        step: 150
+      },{
+        data: Report.fetch( :widget_statistics_clicks, :three_periods, :hourly ),
+        title: "Clicks widget",
+        step: 20
+      },{
+        data: Report.fetch( :widget_statistics_bookings, :three_periods, :hourly ),
+        title: "Bookings widget",
+        step: 2
+      },{
+        data: Report.fetch( :widget_paid_bookings_profit, :three_periods, :hourly ),
+        title: "Paid bookings widget",
+        step: 900
+      }
+    ]
 
-
-    @reports << { data: Report.fetch( :widget_statistics_inits, :three_periods, :hourly ),
-                  title: "Inits widget",
-                  step: 10000
-               }
-    @reports << { data: Report.fetch( :widget_statistics_leads, :three_periods, :hourly ),
-                  title: "Leads widget",
-                  step: 150
-               }
-    @reports << { data: Report.fetch( :widget_statistics_searches, :three_periods, :hourly ),
-                  title: "Searches widget",
-                  step: 150
-               }
-    @reports << { data: Report.fetch( :widget_statistics_clicks, :three_periods, :hourly ),
-                  title: "Clicks widget",
-                  step: 20
-               }
-    @reports << { data: Report.fetch( :widget_statistics_bookings, :three_periods, :hourly ),
-                  title: "Bookings widget",
-                  step: 2
-               }
-    @reports << { data: Report.fetch( :widget_paid_bookings_profit, :three_periods, :hourly ),
-                  title: "Paid bookings widget",
-                  step: 900
-               }
     erb :custom_index, :layout => :layout
   end
 

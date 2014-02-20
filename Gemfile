@@ -9,3 +9,5 @@ gem 'shotgun'
 #gem 'unicorn'
 gem 'mina'
 gem 'timedcache'
+gem 'hiredis' # Speed up redis
+gem 'redis', require: ['redis', 'redis/connection/hiredis']

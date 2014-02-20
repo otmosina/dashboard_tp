@@ -9,6 +9,12 @@ $:.unshift File.dirname(__FILE__)
 require 'lib/report'
 require 'app/dashboard'
 require 'app/detailed_dashboard'
+require 'hiredis'
+require 'redis'
+require 'redis/connection/hiredis'
+
+$redis = Hiredis::Connection.new
+$redis.connect("127.0.0.1", 6379)
 
 class DashboardEndpoint < Sinatra::Base
   set :port, 8080

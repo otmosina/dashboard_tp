@@ -1,33 +1,53 @@
-require "timedcache"
+# require "timedcache"
 module Report
   attr_accessor  :report_type, :period_type, :mode_report, :config, :cache
   attr_reader :data
 
+  CACHE_TTL = 10 * 60
   PERIOD_TYPES = [ :one_periods, :two_periods, :three_periods, :custom ]
   MODE_REPORTS_TYPES = [ :hourly, :daily, :fifteen_min, :custom ]
   @config = YAML::load(File.open('config/report.yml'))
-  @cache = TimedCache.new
+  # @cache = TimedCache.new
 
   def fetch report_type_in, period_type_in, mode_report_in
     @report_type = report_type_in
     @period_type = period_type_in
     @mode_report = mode_report_in
-    if MODE_REPORTS_TYPES.member? mode_report
-      if mode_report == :custom
-        @request_url = config["custom"][report_type.to_s]["url"] rescue nil
+    fetch_cache do
+      if MODE_REPORTS_TYPES.member? mode_report
+        if mode_report == :custom
+          @request_url = config["custom"][report_type.to_s]["url"] rescue nil
+        else
+          @request_url = config["periods"][report_type.to_s][period_type.to_s][mode_report.to_s] rescue nil
+        end
+          return [] if @request_url.nil?
+          @data = get_raw_data
+          prepare_data
       else
-        @request_url = config["periods"][report_type.to_s][period_type.to_s][mode_report.to_s] rescue nil
+        []
       end
-        return [] if @request_url.nil?
-        @data = get_raw_data
-        prepare_data
-    else
-      []
     end
   end
   extend self
 
 private
+
+  def fetch_cache
+    $redis.write ['GET', cache_key]
+    cached = $redis.read
+    p cached
+    return Oj.load(cached) if cached
+    data = yield
+    $redis.write ['SET', cache_key, Oj.dump(data)]
+    $redis.write ['EXPIRE', cache_key, CACHE_TTL]
+    $redis.read
+    $redis.read
+    data
+  end
+
+  def cache_key
+    [@report_type, @period_type, @mode_report].join(?:)
+  end
 
   def get_raw_data
     #if cache[cache_key].nil?
@@ -40,14 +60,14 @@ private
   end
 
 
-  def cache_key
-    key = [ @report_type, "_", @period_type, "_", @mode_report ].join.to_sym
-    [ @report_type, "_", @period_type, "_", @mode_report ].join.to_sym
-  end
-
-  def cache_expare
-    180
-  end
+  # def cache_key
+  #   key = [ @report_type, "_", @period_type, "_", @mode_report ].join.to_sym
+  #   [ @report_type, "_", @period_type, "_", @mode_report ].join.to_sym
+  # end
+  #
+  # def cache_expare
+  #   180
+  # end
 
 
   def prepare_data
@@ -75,7 +95,7 @@ private
         'values' => @data[2].map{|values|values[1]}
       }
     }
-    Oj.dump(result)
+    result
   end
 
   def prepare_two_periods
@@ -89,7 +109,7 @@ private
         'values' => @data[1].map{|values|values[1]}
       }
     }
-    Oj.dump(result)
+    result
   end
 
   def prepare_one_periods
@@ -99,7 +119,7 @@ private
         'values' => @data.map{|values|values[1]}
       }
     }
-    Oj.dump(result)
+    result
   end
 
   def prepare_custom
@@ -123,8 +143,4 @@ private
       }
     }
   end
-
-
-
-
 end
