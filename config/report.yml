@@ -1,54 +1,54 @@
 periods:
   aff_searches:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=89&u1=24&m=1&h=c77d52ca5f5087735652bcd45ce0490e146e1fc6&export=json'
-      fifteen_min: 'http://tp.aviasales.ru/report.php?r=96&u1=6&m=1&h=74adefa7ee34bc1ca73a9c2fdfa6d09f33dcc1cd&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=89&u1=%s&m=1&h=c77d52ca5f5087735652bcd45ce0490e146e1fc6&export=json'
+      fifteen_min: 'http://tp.aviasales.ru/report.php?r=96&u1=%s&m=1&h=74adefa7ee34bc1ca73a9c2fdfa6d09f33dcc1cd&export=json'
   aff_clicks:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=90&u1=24&m=1&h=f6cd4db67bf01d95951e9a42279a23e12eb35b9d&export=json'
-      fifteen_min: 'http://tp.aviasales.ru/report.php?r=99&u1=6&m=1&h=11cfc4116a70bc102a6aaccd7ba094976258bfb7&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=90&u1=%s&m=1&h=f6cd4db67bf01d95951e9a42279a23e12eb35b9d&export=json'
+      fifteen_min: 'http://tp.aviasales.ru/report.php?r=99&u1=%s&m=1&h=11cfc4116a70bc102a6aaccd7ba094976258bfb7&export=json'
   aff_paidbookings:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=91&u1=24&m=1&h=d0ba89de5088c9d7b3d8044f56eb16369de435e4&export=json'
-      fifteen_min: 'http://tp.aviasales.ru/report.php?r=98&u1=6&m=1&h=8833b4f670852a77879b35cdb14920f82e412a8f&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=91&u1=%s&m=1&h=d0ba89de5088c9d7b3d8044f56eb16369de435e4&export=json'
+      fifteen_min: 'http://tp.aviasales.ru/report.php?r=98&u1=%s&m=1&h=8833b4f670852a77879b35cdb14920f82e412a8f&export=json'
   aff_amount:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=92&u1=24&m=1&h=e06675a675f2284f17f7deb52112b38b9dad2fd1&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=92&u1=%s&m=1&h=e06675a675f2284f17f7deb52112b38b9dad2fd1&export=json'
   aff_profit:
     three_periods:
       hourly: ''
-      daily: 'http://tp.aviasales.ru/report.php?r=94&u1=24&m=1&h=c6d24feb9416f324085e61c79368fd874b901ee4&export=json'
+      daily: 'http://tp.aviasales.ru/report.php?r=94&u1=%s&m=1&h=c6d24feb9416f324085e61c79368fd874b901ee4&export=json'
     one_periods:
       hourly: ''
-      daily: 'http://tp.aviasales.ru/report.php?r=77&u1=24&m=1&h=bd669cd8be327219113e893213e8588cf5bd8a96&export=json'
+      daily: 'http://tp.aviasales.ru/report.php?r=77&u1=%s&m=1&h=bd669cd8be327219113e893213e8588cf5bd8a96&export=json'
   widget_statistics_inits:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=inits&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=%s&u2=inits&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
   widget_statistics_shows:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=shows&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=%s&u2=shows&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
   widget_statistics_leads:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=leads&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=%s&u2=leads&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
   widget_statistics_searches:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=searches&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=%s&u2=searches&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
   widget_statistics_clicks:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=clicks&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=%s&u2=clicks&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
   widget_statistics_bookings:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=bookings&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=%s&u2=bookings&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
   widget_statistics_profit:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=profit&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=%s&u2=profit&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
   widget_paid_bookings_profit:
     three_periods:
-      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=24&u2=paid_bookings_profit&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+      hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=%s&u2=paid_bookings_profit&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
 custom:
   widget_events:
-    url: 'http://tp.aviasales.ru/report.php?r=73&u1=24&m=1&h=8cd6b09cb12eb6ce7e29859c9b13efe1cf8d81bf&export=json'
-    detailed_url: 'http://tp.aviasales.ru/report.php?r=85&u1=24&m=1&h=c9f043f6692c1c10598c3463043c5ba3823adec9&export=json'
+    url: 'http://tp.aviasales.ru/report.php?r=73&u1=%s&m=1&h=8cd6b09cb12eb6ce7e29859c9b13efe1cf8d81bf&export=json'
+    detailed_url: 'http://tp.aviasales.ru/report.php?r=85&u1=%s&m=1&h=c9f043f6692c1c10598c3463043c5ba3823adec9&export=json'
   widget_statistics:
-    url: 'http://tp.aviasales.ru/report.php?r=74&u1=24&m=1&h=661221091ae4f65a425e47e75d7895beeefe66b5&export=json'
-    detailed_url: 'http://tp.aviasales.ru/report.php?r=84&u1=24&m=1&h=9c1b9554eb3e62a43ac5c4245c01bc3e19140469&export=json'
+    url: 'http://tp.aviasales.ru/report.php?r=74&u1=%s&m=1&h=661221091ae4f65a425e47e75d7895beeefe66b5&export=json'
+    detailed_url: 'http://tp.aviasales.ru/report.php?r=84&u1=%s&m=1&h=9c1b9554eb3e62a43ac5c4245c01bc3e19140469&export=json'

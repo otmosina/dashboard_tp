@@ -1,27 +1,26 @@
 # require "timedcache"
 module Report
-  attr_accessor  :report_type, :period_type, :mode_report, :config, :cache
-  attr_reader :data
 
   CACHE_TTL = 5 * 60
   PERIOD_TYPES = [ :one_periods, :two_periods, :three_periods, :custom ]
   MODE_REPORTS_TYPES = [ :hourly, :daily, :fifteen_min, :custom ]
-  @config = YAML::load(File.open('config/report.yml'))
+  @@config = YAML::load(File.open('config/report.yml'))
+  @@column_count = 12
   # @cache = TimedCache.new
 
   def fetch report_type_in, period_type_in, mode_report_in
-    @report_type = report_type_in
-    @period_type = period_type_in
-    @mode_report = mode_report_in
+    @@report_type = report_type_in
+    @@period_type = period_type_in
+    @@mode_report = mode_report_in
     fetch_cache do
-      if MODE_REPORTS_TYPES.member? mode_report
-        if mode_report == :custom
-          @request_url = config["custom"][report_type.to_s]["url"] rescue nil
+      if MODE_REPORTS_TYPES.member? @@mode_report
+        if @@mode_report == :custom
+          @@request_url = @@config["custom"][@@report_type.to_s]["url"] rescue nil
         else
-          @request_url = config["periods"][report_type.to_s][period_type.to_s][mode_report.to_s] rescue nil
+          @@request_url = @@config["periods"][@@report_type.to_s][@@period_type.to_s][@@mode_report.to_s] rescue nil
         end
-          return [] if @request_url.nil?
-          @data = get_raw_data
+          return [] if @@request_url.nil?
+          @@data = get_raw_data
           prepare_data
       else
         []
@@ -35,6 +34,7 @@ module Report
     end
   end
 
+
   extend self
 
 
@@ -44,14 +44,14 @@ private
     cached = $redis.get cache_key
     #p cached
     return Oj.load(cached) if cached
-    data = yield
-    $redis.set  cache_key, Oj.dump(data)
+    @@data = yield
+    $redis.set  cache_key, Oj.dump(@@data)
     $redis.expire cache_key, CACHE_TTL
-    data
+    @@data
   end
 
   def cache_key
-    ["dashboard", report_type, period_type, mode_report].join(?:)
+    ["dashboard", @@report_type, @@period_type, @@mode_report].join(?:)
   end
 
 
@@ -61,8 +61,9 @@ private
     #  cache.put cache_key, request_data, cache_expare
     #end
     #cache[cache_key]
-    puts "request url #{@request_url}"
-    Oj.load(RestClient.get(@request_url))
+    url = @@request_url % @@column_count
+    puts "request url #{url}"
+    Oj.load(RestClient.get(url))
   end
 
 
@@ -77,7 +78,7 @@ private
 
 
   def prepare_data
-    case @period_type
+    case @@period_type
       when :one_periods   then prepare_one_periods
       when :two_periods   then prepare_two_periods
       when :three_periods then prepare_three_periods
@@ -89,16 +90,16 @@ private
   def prepare_three_periods
     result = {
       'first_series' => {
-        'dates' => @data[0].map{|values|values[0]},
-        'values' => @data[0].map{|values|values[1]}
+        'dates' => @@data[0].map{|values|values[0]},
+        'values' => @@data[0].map{|values|values[1]}
       },
       'second_series' => {
-        'dates' => @data[0].map{|values|values[0]},
-        'values' => @data[1].map{|values|values[1]}
+        'dates' => @@data[0].map{|values|values[0]},
+        'values' => @@data[1].map{|values|values[1]}
       },
       'third_series' => {
-        'dates' => @data[0].map{|values|values[0]},
-        'values' => @data[2].map{|values|values[1]}
+        'dates' => @@data[0].map{|values|values[0]},
+        'values' => @@data[2].map{|values|values[1]}
       }
     }
     result
@@ -107,12 +108,12 @@ private
   def prepare_two_periods
     result = {
       'first_series' => {
-        'dates' => @data[0].map{|values|values[0]},
-        'values' => @data[0].map{|values|values[1]}
+        'dates' => @@data[0].map{|values|values[0]},
+        'values' => @@data[0].map{|values|values[1]}
       },
       'second_series' => {
-        'dates' => @data[0].map{|values|values[0]},
-        'values' => @data[1].map{|values|values[1]}
+        'dates' => @@data[0].map{|values|values[0]},
+        'values' => @@data[1].map{|values|values[1]}
       }
     }
     result
@@ -121,15 +122,15 @@ private
   def prepare_one_periods
     result = {
       'first_series' => {
-        'dates' => @data.map{|values|values[0]},
-        'values' => @data.map{|values|values[1]}
+        'dates' => @@data.map{|values|values[0]},
+        'values' => @@data.map{|values|values[1]}
       }
     }
     result
   end
 
   def prepare_custom
-    copy_data = data
+    copy_data = @@data
     result = {
       'first_values' => {
         'dates' => copy_data.map{|values|values[0]},
