@@ -9,6 +9,7 @@ module Report
   # @cache = TimedCache.new
 
   def fetch report_type_in, period_type_in, mode_report_in
+    puts "params: #{report_type_in}|#{period_type_in}|#{mode_report_in}"
     @@report_type = report_type_in
     @@period_type = period_type_in
     @@mode_report = mode_report_in
@@ -41,6 +42,7 @@ module Report
 private
 
   def fetch_cache
+    puts "cache key: #{cache_key}"
     cached = $redis.get cache_key
     #p cached
     return Oj.load(cached) if cached
