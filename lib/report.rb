@@ -1,7 +1,7 @@
 # require "timedcache"
 module Report
 
-  CACHE_TTL = 5 * 60
+  CACHE_TTL = 4 * 60
   PERIOD_TYPES = [ :one_periods, :two_periods, :three_periods, :custom ]
   MODE_REPORTS_TYPES = [ :hourly, :daily, :fifteen_min, :custom ]
   @@config = YAML::load(File.open('config/report.yml'))
