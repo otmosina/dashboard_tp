@@ -12,7 +12,7 @@ class Dashboard < Sinatra::Base
 
 
   get '/dashboard/widget_stat' do
-
+    Report.set_column_count 15
     @reports += [
       {
         data: Report.fetch( :widget_statistics_inits, :three_periods, :hourly ),
@@ -84,6 +84,7 @@ class Dashboard < Sinatra::Base
   end
 
   get '/dashboard/hourly' do
+    Report.set_column_count 12
     #@reports << { data: Report.fetch( :aff_amount, :three_periods, :hourly ),
     #              title: "Affiliate registration",
     #              step: 1
