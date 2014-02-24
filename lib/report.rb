@@ -49,13 +49,13 @@ module Report
 private
 
   def fetch_cache
-    cached = $redis.get cache_key
-    #p cached
-    return Oj.load(cached) if cached
     @@data = yield
-    $redis.set  cache_key, Oj.dump(@@data)
-    $redis.expire cache_key, CACHE_TTL
-    @@data
+    #cached = $redis.get cache_key
+    #return Oj.load(cached) if cached
+    #@@data = yield
+    #$redis.set  cache_key, Oj.dump(@@data)
+    #$redis.expire cache_key, CACHE_TTL
+    #@@data
   end
 
   def cache_key
