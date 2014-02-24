@@ -124,7 +124,7 @@ class Dashboard < Sinatra::Base
         step: 2
       },{
         data: Report.fetch( :widget_paid_bookings_profit, :three_periods, :hourly ),
-        title: "Paid bookings widget",
+        title: "Paid bookings profit widget",
         step: 900
       }
     ]
