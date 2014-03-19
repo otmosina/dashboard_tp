@@ -61,7 +61,7 @@ class Dashboard < Sinatra::Base
                 }
     @reports << { data: Report.fetch( :aff_amount, :one_periods, :daily ),
                   title: "Affiliate registration",
-                  step: 5
+                  step: 10
                 }
     @reports << { data: Report.fetch( :aff_searches, :one_periods, :daily ),
                   title: "Affiliate searches",
@@ -156,6 +156,27 @@ class Dashboard < Sinatra::Base
     @data_widget_statistics = Report.fetch :widget_statistics, :custom, :custom
 
     erb :custom, :layout => :layout
+  end
+
+  get '/dashboard/cb_wl' do
+    Report.set_column_count 11
+        @reports << { data: Report.fetch( :combined_wl_searches, :one_periods, :daily),
+                      title: "Searches",
+                      step: 110
+                    }
+        @reports << { data: Report.fetch( :combined_wl_clicks, :one_periods, :daily),
+                      title: "Clicks",
+                      step: 15
+                    }
+        @reports << { data: Report.fetch( :combined_wl_paid_bookings_profit, :one_periods, :daily),
+                      title: "Paid bookings Profit",
+                      step: 320
+                    }
+        @reports << { data: Report.fetch( :combined_wl_bookings, :one_periods, :daily),
+                      title: "Bookings",
+                      step: 1
+                    }    
+        erb :cb_wl, :layout => :layout
   end
 
 end

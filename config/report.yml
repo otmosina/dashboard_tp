@@ -57,6 +57,18 @@ periods:
   widget_paid_bookings_profit:
     three_periods:
       hourly: 'http://tp.aviasales.ru/report.php?r=95&u1=%s&u2=paid_bookings_profit&m=1&h=5781b1205010ca590bfc607aa5dcc0f480b41b7e&export=json'
+  combined_wl_searches:
+    one_periods:
+      daily: 'http://tp.aviasales.ru/report.php?r=130&u1=%s&u2=searches&m=1&h=69af489f3a4bec6beafda37a5d7e999e51548cb3&export=json'
+  combined_wl_bookings:  
+    one_periods:
+      daily: 'http://tp.aviasales.ru/report.php?r=130&u1=%s&u2=bookings&m=1&h=69af489f3a4bec6beafda37a5d7e999e51548cb3&export=json'
+  combined_wl_clicks:  
+    one_periods:
+      daily: 'http://tp.aviasales.ru/report.php?r=130&u1=%s&u2=clicks&m=1&h=69af489f3a4bec6beafda37a5d7e999e51548cb3&export=json'
+  combined_wl_paid_bookings_profit:  
+    one_periods:
+      daily: 'http://tp.aviasales.ru/report.php?r=130&u1=%s&u2=paid_bookings_profit&m=1&h=69af489f3a4bec6beafda37a5d7e999e51548cb3&export=json'
 custom:
   widget_events:
     url: 'http://tp.aviasales.ru/report.php?r=73&u1=%s&m=1&h=8cd6b09cb12eb6ce7e29859c9b13efe1cf8d81bf&export=json'
