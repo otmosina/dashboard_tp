@@ -1,0 +1,15 @@
+<% @reports.each_with_index do |report, index| %>
+  <div class='scalable one-third'>
+    <div><strong><%= report[:title] %></strong></div>
+    <canvas id="report_<%= index.to_s %>" width="<%= @canvas_width %>" height="<%= @canvas_height %>"></canvas>
+  </div>
+<% end %>
+
+
+      <script type="text/javascript">
+        function drawGraphs(){
+          <% @reports.each_with_index do |report, index| %>
+            Draw_OnePeriod(<%= Oj.dump(report[:data]) %>, $("#report_<%= index.to_s %>"), <%= report[:step] %>);
+          <% end %>
+        };
+      </script>
