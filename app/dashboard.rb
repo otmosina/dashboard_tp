@@ -175,8 +175,8 @@ class Dashboard < Sinatra::Base
         @reports << { data: Report.fetch( :combined_wl_bookings, :one_periods, :daily),
                       title: "Bookings",
                       step: 1
-                    }    
-        erb :cb_wl, :layout => :layout
+                    }
+        erb :one_period, :layout => :layout
   end
 
 end
