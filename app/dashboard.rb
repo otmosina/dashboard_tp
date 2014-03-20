@@ -162,7 +162,7 @@ class Dashboard < Sinatra::Base
     Report.set_column_count 11
         @reports << { data: Report.fetch( :combined_wl_searches, :one_periods, :daily),
                       title: "Searches",
-                      step: 110
+                      step: 130
                     }
         @reports << { data: Report.fetch( :combined_wl_clicks, :one_periods, :daily),
                       title: "Clicks",
@@ -170,7 +170,7 @@ class Dashboard < Sinatra::Base
                     }
         @reports << { data: Report.fetch( :combined_wl_paid_bookings_profit, :one_periods, :daily),
                       title: "Paid bookings Profit",
-                      step: 320
+                      step: 400
                     }
         @reports << { data: Report.fetch( :combined_wl_bookings, :one_periods, :daily),
                       title: "Bookings",
@@ -178,5 +178,27 @@ class Dashboard < Sinatra::Base
                     }
         erb :one_period, :layout => :layout
   end
+
+  get '/dashboard/wl' do
+    Report.set_column_count 12
+        @reports << { data: Report.fetch( :whitelabels_searches, :one_periods, :daily),
+                      title: "Searches",
+                      step: 11000
+                    }
+        @reports << { data: Report.fetch( :whitelabels_clicks, :one_periods, :daily),
+                      title: "Clicks",
+                      step: 1500
+                    }
+        @reports << { data: Report.fetch( :whitelabels_paid_bookings_profit, :one_periods, :daily),
+                      title: "Paid bookings Profit",
+                      step: 32000
+                    }
+        @reports << { data: Report.fetch( :whitelabels_bookings, :one_periods, :daily),
+                      title: "Bookings",
+                      step: 100
+                    }
+        erb :one_period, :layout => :layout
+  end
+
 
 end
