@@ -8,11 +8,16 @@ class Dashboard < Sinatra::Base
     if params[:clear_cache]
       Report.clear_cache
     end
+
+    Report.set_column_count 0
+    if params[:count_of_periods]
+      Report.set_column_count params[:count_of_periods].to_i
+    end
   end
 
 
   get '/dashboard/widget_stat' do
-    Report.set_column_count 15
+    Report.set_column_count 15 if Report.get_column_count == 0
     @reports += [
       {
         data: Report.fetch( :widget_statistics_inits, :three_periods, :hourly ),
@@ -54,10 +59,10 @@ class Dashboard < Sinatra::Base
   end
 
   get '/dashboard/daily' do
-    Report.set_column_count 20
+    Report.set_column_count 20 if Report.get_column_count == 0
     @reports << { data: Report.fetch( :aff_profit, :one_periods, :daily ),
                   title: "Profit",
-                  step: 50000
+                  step: 60000
                 }
     @reports << { data: Report.fetch( :aff_amount, :one_periods, :daily ),
                   title: "Affiliate registration",
@@ -84,7 +89,7 @@ class Dashboard < Sinatra::Base
   end
 
   get '/dashboard/hourly' do
-    Report.set_column_count 12
+    Report.set_column_count 12 if Report.get_column_count == 0
     #@reports << { data: Report.fetch( :aff_amount, :three_periods, :hourly ),
     #              title: "Affiliate registration",
     #              step: 1
@@ -133,7 +138,7 @@ class Dashboard < Sinatra::Base
   end
 
   get '/dashboard/fifteen' do
-    Report.set_column_count 6
+    Report.set_column_count 6 if Report.get_column_count == 0
     @reports << { data: Report.fetch( :aff_searches, :three_periods, :fifteen_min ),
                   title: "Searches",
                   step: 500
@@ -151,7 +156,7 @@ class Dashboard < Sinatra::Base
   end
 
   get '/dashboard/custom' do
-    Report.set_column_count 24
+    Report.set_column_count 24 if Report.get_column_count == 0
     @data_widget_events     = Report.fetch :widget_events, :custom, :custom
     @data_widget_statistics = Report.fetch :widget_statistics, :custom, :custom
 
@@ -159,7 +164,8 @@ class Dashboard < Sinatra::Base
   end
 
   get '/dashboard/cb_wl' do
-    Report.set_column_count 15
+    binding.pry
+    Report.set_column_count 15 if Report.get_column_count == 0
         @reports << { data: Report.fetch( :combined_wl_searches, :one_periods, :daily),
                       title: "Searches",
                       step: 130
@@ -184,7 +190,7 @@ class Dashboard < Sinatra::Base
   end
 
   get '/dashboard/wl' do
-    Report.set_column_count 15
+    Report.set_column_count 15 if Report.get_column_count == 0
         @reports << { data: Report.fetch( :whitelabels_searches, :one_periods, :daily),
                       title: "Searches",
                       step: 11000
