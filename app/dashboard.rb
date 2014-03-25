@@ -62,7 +62,7 @@ class Dashboard < Sinatra::Base
     Report.set_column_count 20 if Report.get_column_count == 0
     @reports << { data: Report.fetch( :aff_profit, :one_periods, :daily ),
                   title: "Profit",
-                  step: 60000
+                  step: 70000
                 }
     @reports << { data: Report.fetch( :aff_amount, :one_periods, :daily ),
                   title: "Affiliate registration",
