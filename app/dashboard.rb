@@ -164,7 +164,6 @@ class Dashboard < Sinatra::Base
   end
 
   get '/dashboard/cb_wl' do
-    binding.pry
     Report.set_column_count 15 if Report.get_column_count == 0
         @reports << { data: Report.fetch( :combined_wl_searches, :one_periods, :daily),
                       title: "Searches",
