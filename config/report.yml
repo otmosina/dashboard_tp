@@ -72,6 +72,9 @@ periods:
   combined_wl_registration:
     one_periods:
       daily: 'http://tp.aviasales.ru/report.php?r=133&u1=%s&m=1&h=c055e081f5e89a38b0597debec1c00c26e280a8c&export=json'
+  combined_wl_active_wl:  
+    one_periods:
+      daily: 'http://tp.aviasales.ru/report.php?r=134&u1=%s&m=1&h=9506a1e53a068b284e638f40257125b310b6bc9e&export=json'
   whitelabels_searches:
     one_periods:
       daily: 'http://tp.aviasales.ru/report.php?r=131&u1=%s&u2=searches&m=1&h=87e698d690eba65d61a89c7f28083c6208dbad66&export=json'
@@ -87,7 +90,6 @@ periods:
   whitelabels_registration:
     one_periods:
       daily: 'http://tp.aviasales.ru/report.php?r=132&u1=%s&m=1&h=f203f61e14d72d4a5013f931adb808b67c85b550&export=json'
-
 custom:
   widget_events:
     url: 'http://tp.aviasales.ru/report.php?r=73&u1=%s&m=1&h=8cd6b09cb12eb6ce7e29859c9b13efe1cf8d81bf&export=json'

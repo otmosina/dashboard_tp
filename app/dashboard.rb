@@ -167,7 +167,7 @@ class Dashboard < Sinatra::Base
     Report.set_column_count 15 if Report.get_column_count == 0
         @reports << { data: Report.fetch( :combined_wl_searches, :one_periods, :daily),
                       title: "Searches",
-                      step: 130
+                      step: 150
                     }
         @reports << { data: Report.fetch( :combined_wl_clicks, :one_periods, :daily),
                       title: "Clicks",
@@ -184,6 +184,10 @@ class Dashboard < Sinatra::Base
         @reports << { data: Report.fetch( :combined_wl_registration, :one_periods, :daily),
                       title: "Registrations",
                       step: 3
+                    }
+        @reports << { data: Report.fetch( :combined_wl_active_wl, :one_periods, :daily),
+                      title: "Active cb_wl",
+                      step: 5
                     }
         erb :one_period, :layout => :layout
   end
