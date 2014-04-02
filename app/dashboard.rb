@@ -26,23 +26,23 @@ class Dashboard < Sinatra::Base
       },{
         data: Report.fetch( :widget_statistics_shows, :three_periods, :hourly ),
         title: "Widget shows",
-        step: 5000
+        step: 7000
       },{
         data: Report.fetch( :widget_statistics_leads, :three_periods, :hourly ),
         title: "Widget leads",
-        step: 150
+        step: 250
       },{
         data: Report.fetch( :widget_statistics_searches, :three_periods, :hourly ),
         title: "Widget searches",
-        step: 150
+        step: 250
       },{
         data: Report.fetch( :widget_statistics_clicks, :three_periods, :hourly ),
         title: "Widget clicks",
-        step: 20
+        step: 30
       },{
         data: Report.fetch( :widget_statistics_bookings, :three_periods, :hourly ),
         title: "Widget bookings",
-        step: 1.5
+        step: 3
       },{
         data: Report.fetch( :widget_paid_bookings_profit, :three_periods, :hourly ),
         title: "Widget paid bookings",
@@ -114,19 +114,19 @@ class Dashboard < Sinatra::Base
       },{
         data: Report.fetch( :widget_statistics_leads, :three_periods, :hourly ),
         title: "Leads widget",
-        step: 150
+        step: 250
       },{
         data: Report.fetch( :widget_statistics_searches, :three_periods, :hourly ),
         title: "Searches widget",
-        step: 150
+        step: 250
       },{
         data: Report.fetch( :widget_statistics_clicks, :three_periods, :hourly ),
         title: "Clicks widget",
-        step: 20
+        step: 30
       },{
         data: Report.fetch( :widget_statistics_bookings, :three_periods, :hourly ),
         title: "Bookings widget",
-        step: 2
+        step: 3
       },{
         data: Report.fetch( :widget_paid_bookings_profit, :three_periods, :hourly ),
         title: "Paid bookings profit widget",
