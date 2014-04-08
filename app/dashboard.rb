@@ -167,19 +167,19 @@ class Dashboard < Sinatra::Base
     Report.set_column_count 15 if Report.get_column_count == 0
         @reports << { data: Report.fetch( :combined_wl_searches, :one_periods, :daily),
                       title: "Searches",
-                      step: 500
+                      step: 900
                     }
         @reports << { data: Report.fetch( :combined_wl_clicks, :one_periods, :daily),
                       title: "Clicks",
-                      step: 50
+                      step: 90
                     }
         @reports << { data: Report.fetch( :combined_wl_paid_bookings_profit, :one_periods, :daily),
                       title: "Paid bookings Profit",
-                      step: 850
+                      step: 2000
                     }
         @reports << { data: Report.fetch( :combined_wl_bookings, :one_periods, :daily),
                       title: "Bookings",
-                      step: 3
+                      step: 6
                     }
         @reports << { data: Report.fetch( :combined_wl_registration, :one_periods, :daily),
                       title: "Registrations",
@@ -196,19 +196,19 @@ class Dashboard < Sinatra::Base
     Report.set_column_count 15 if Report.get_column_count == 0
         @reports << { data: Report.fetch( :whitelabels_searches, :one_periods, :daily),
                       title: "Searches",
-                      step: 11000
+                      step: 6600
                     }
         @reports << { data: Report.fetch( :whitelabels_clicks, :one_periods, :daily),
                       title: "Clicks",
-                      step: 1500
+                      step: 460
                     }
         @reports << { data: Report.fetch( :whitelabels_paid_bookings_profit, :one_periods, :daily),
                       title: "Paid bookings Profit",
-                      step: 32000
+                      step: 10500
                     }
         @reports << { data: Report.fetch( :whitelabels_bookings, :one_periods, :daily),
                       title: "Bookings",
-                      step: 100
+                      step: 45
                     }
         #@reports << { data: Report.fetch( :whitelabels_registration, :one_periods, :daily),
                      # title: "Registrations",
