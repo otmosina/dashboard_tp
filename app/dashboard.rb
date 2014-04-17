@@ -196,19 +196,19 @@ class Dashboard < Sinatra::Base
     Report.set_column_count 15 if Report.get_column_count == 0
         @reports << { data: Report.fetch( :whitelabels_searches, :one_periods, :daily),
                       title: "Searches",
-                      step: 6600
+                      step: 8000
                     }
         @reports << { data: Report.fetch( :whitelabels_clicks, :one_periods, :daily),
                       title: "Clicks",
-                      step: 460
+                      step: 600
                     }
         @reports << { data: Report.fetch( :whitelabels_paid_bookings_profit, :one_periods, :daily),
                       title: "Paid bookings Profit",
-                      step: 10500
+                      step: 15000
                     }
         @reports << { data: Report.fetch( :whitelabels_bookings, :one_periods, :daily),
                       title: "Bookings",
-                      step: 45
+                      step: 50
                     }
         #@reports << { data: Report.fetch( :whitelabels_registration, :one_periods, :daily),
                      # title: "Registrations",
