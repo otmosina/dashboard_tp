@@ -114,11 +114,11 @@ class Dashboard < Sinatra::Base
       },{
         data: Report.fetch( :widget_statistics_leads, :three_periods, :hourly ),
         title: "Leads widget",
-        step: 500
+        step: 1500
       },{
         data: Report.fetch( :widget_statistics_searches, :three_periods, :hourly ),
         title: "Searches widget",
-        step: 500
+        step: 1500
       },{
         data: Report.fetch( :widget_statistics_clicks, :three_periods, :hourly ),
         title: "Clicks widget",
