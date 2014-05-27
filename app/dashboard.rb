@@ -98,11 +98,11 @@ class Dashboard < Sinatra::Base
       {
         data: Report.fetch( :aff_searches, :three_periods, :hourly ),
         title: "Searches",
-        step: 2500
+        step: 5000
       },{
         data: Report.fetch( :aff_clicks, :three_periods, :hourly ),
         title: "Clicks",
-        step: 200
+        step: 400
       },{
         data: Report.fetch( :aff_paidbookings, :three_periods, :hourly ),
         title: "Paid bookings",
@@ -110,27 +110,27 @@ class Dashboard < Sinatra::Base
       },{
         data: Report.fetch( :widget_statistics_inits, :three_periods, :hourly ),
         title: "Inits widget",
-        step: 10000
+        step: 20000
       },{
         data: Report.fetch( :widget_statistics_leads, :three_periods, :hourly ),
         title: "Leads widget",
-        step: 250
+        step: 500
       },{
         data: Report.fetch( :widget_statistics_searches, :three_periods, :hourly ),
         title: "Searches widget",
-        step: 250
+        step: 500
       },{
         data: Report.fetch( :widget_statistics_clicks, :three_periods, :hourly ),
         title: "Clicks widget",
-        step: 30
+        step: 60
       },{
         data: Report.fetch( :widget_statistics_bookings, :three_periods, :hourly ),
         title: "Bookings widget",
-        step: 3
+        step: 5
       },{
         data: Report.fetch( :widget_paid_bookings_profit, :three_periods, :hourly ),
         title: "Paid bookings profit widget",
-        step: 900
+        step: 1400
       }
     ]
 
