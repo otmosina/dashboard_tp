@@ -3,7 +3,7 @@ module Report
 
   CACHE_TTL = 4 * 60
   PERIOD_TYPES = [ :one_periods, :two_periods, :three_periods, :custom ]
-  MODE_REPORTS_TYPES = [ :hourly, :daily, :fifteen_min, :custom ]
+  MODE_REPORTS_TYPES = [ :hourly, :daily, :fifteen_min, :monthly, :custom ]
   @@config = YAML::load(File.open('config/report.yml'))
   @@column_count = 12
   # @cache = TimedCache.new
@@ -12,6 +12,7 @@ module Report
     @@report_type = report_type_in
     @@period_type = period_type_in
     @@mode_report = mode_report_in
+
     fetch_cache do
       if MODE_REPORTS_TYPES.member? @@mode_report
         if @@mode_report == :custom
@@ -19,6 +20,7 @@ module Report
         else
           @@request_url = @@config["periods"][@@report_type.to_s][@@period_type.to_s][@@mode_report.to_s] rescue nil
         end
+
           return [] if @@request_url.nil?
           @@data = get_raw_data
           prepare_data
@@ -71,7 +73,7 @@ private
     #cache[cache_key]
     url = @@request_url % @@column_count
     puts "request url #{url}"
-    Oj.load(RestClient.get(url))
+    Oj.load(RestClient.get(url, :timeout => 90000000000,  :open_timeout => 90000000000))
   end
 
 

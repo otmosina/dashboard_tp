@@ -62,28 +62,60 @@ class Dashboard < Sinatra::Base
     Report.set_column_count 20 if Report.get_column_count == 0
     @reports << { data: Report.fetch( :aff_profit, :one_periods, :daily ),
                   title: "Profit",
-                  step: 70000
+                  step: 140000
                 }
     @reports << { data: Report.fetch( :aff_amount, :one_periods, :daily ),
                   title: "Affiliate registration",
-                  step: 10
+                  step: 20
                 }
     @reports << { data: Report.fetch( :aff_searches, :one_periods, :daily ),
                   title: "Affiliate searches",
-                  step: 30000
+                  step: 60000
                 }
     @reports << { data: Report.fetch( :aff_clicks, :one_periods, :daily ),
                   title: "Affiliate clicks",
-                  step: 3000
+                  step: 6000
                 }
     @reports << { data: Report.fetch( :aff_bookings, :one_periods, :daily ),
                   title: "Affiliate bookings",
-                  step: 300
+                  step: 600
                 }
     @reports << { data: Report.fetch( :aff_paidbookings, :one_periods, :daily ),
                   title: "Affiliate paidbookings",
-                  step: 200
+                  step: 400
                 }
+    erb :one_period, :layout => :layout
+
+  end
+
+  get '/dashboard/monthly' do
+    Report.set_column_count 4 if Report.get_column_count == 0
+    @reports << { data: Report.fetch( :aff_profit, :one_periods, :monthly ),
+                  title: "Profit",
+                  step: 140000
+                }
+    @reports << { data: Report.fetch( :aff_amount, :one_periods, :monthly ),
+                  title: "Affiliate registration",
+                  step: 20
+                }
+
+    @reports << { data: Report.fetch( :aff_searches, :one_periods, :monthly ),
+                  title: "Affiliate searches",
+                  step: 60000
+                }
+    @reports << { data: Report.fetch( :aff_clicks, :one_periods, :monthly ),
+                  title: "Affiliate clicks",
+                  step: 6000
+                }
+    @reports << { data: Report.fetch( :aff_bookings, :one_periods, :monthly ),
+                  title: "Affiliate bookings",
+                  step: 600
+                }
+    @reports << { data: Report.fetch( :aff_paidbookings, :one_periods, :monthly ),
+                  title: "Affiliate paidbookings",
+                  step: 400
+                }
+
     erb :one_period, :layout => :layout
 
   end
@@ -179,7 +211,7 @@ class Dashboard < Sinatra::Base
                     }
         @reports << { data: Report.fetch( :combined_wl_bookings, :one_periods, :daily),
                       title: "Bookings",
-                      step: 10
+                      step: 20
                     }
         @reports << { data: Report.fetch( :combined_wl_registration, :one_periods, :daily),
                       title: "Registrations",
@@ -187,7 +219,7 @@ class Dashboard < Sinatra::Base
                     }
         @reports << { data: Report.fetch( :combined_wl_active_wl, :one_periods, :daily),
                       title: "Active cb_wl",
-                      step: 10
+                      step: 30
                     }
         erb :one_period, :layout => :layout
   end
