@@ -199,19 +199,19 @@ class Dashboard < Sinatra::Base
     Report.set_column_count 15 if Report.get_column_count == 0
         @reports << { data: Report.fetch( :combined_wl_searches, :one_periods, :daily),
                       title: "Searches",
-                      step: 1800
+                      step: 3000
                     }
         @reports << { data: Report.fetch( :combined_wl_clicks, :one_periods, :daily),
                       title: "Clicks",
-                      step: 180
+                      step: 300
                     }
         @reports << { data: Report.fetch( :combined_wl_paid_bookings_profit, :one_periods, :daily),
                       title: "Paid bookings Profit",
-                      step: 4000
+                      step: 8000
                     }
         @reports << { data: Report.fetch( :combined_wl_bookings, :one_periods, :daily),
                       title: "Bookings",
-                      step: 20
+                      step: 50
                     }
         @reports << { data: Report.fetch( :combined_wl_registration, :one_periods, :daily),
                       title: "Registrations",
@@ -219,7 +219,7 @@ class Dashboard < Sinatra::Base
                     }
         @reports << { data: Report.fetch( :combined_wl_active_wl, :one_periods, :daily),
                       title: "Active cb_wl",
-                      step: 30
+                      step: 40
                     }
         erb :one_period, :layout => :layout
   end
